@@ -37,6 +37,11 @@ public class BreakableCrystal : MonoBehaviour
     // Цей метод викличеться в кінці анімації Crystal_Break через Animation Event
     public void DestroyObject()
     {
+        if (CrystalUI.instance != null)
+        {
+            CrystalUI.instance.ScheduleCrystalRespawn();
+        }
+
         Destroy(gameObject);
     }
 }

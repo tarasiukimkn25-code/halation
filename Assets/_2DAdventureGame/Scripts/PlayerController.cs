@@ -22,19 +22,15 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab;
     public InputAction LaunchAction;
     public InputAction TalkAction;
+    public float npcInteractionRadius = 2.6f;
 
-    // --- ЗВУК ЛАЗЕРА ТА КРОКІВ ---
     public AudioClip laserSound;
     private AudioSource audioSource;
-    public AudioSource footstepsSource; // <--- ДОДАНО ДЛЯ КРОКІВ
+    public AudioSource footstepsSource;
 
     private NonPlayerCharacter lastNonPlayerCharacter;
 
-    // --- ЗМІННІ ДЛЯ СЕНСОРА ТА МИШІ ---
-    private Vector2 touchStartPos;
-    private bool isTouching = false;
-
-    // --- ЗМІННА ДЛЯ ГРАФІКИ ---
+    // --- ДОДАНО ЗМІННУ ДЛЯ ГРАФІКИ ---
     private SpriteRenderer spriteRenderer;
 
     void Start()
@@ -45,6 +41,8 @@ public class PlayerController : MonoBehaviour
 
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
+
+        // Отримуємо компонент для віддзеркалення спрайту
         spriteRenderer = GetComponent<SpriteRenderer>(); 
         
         currentHealth = maxHealth;
@@ -53,64 +51,39 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // 1. Зчитуємо рух з клавіатури
+        // Клавіатура й екранний D-pad керують одним рухом.
         move = MoveAction.ReadValue<Vector2>();
+        UIHandler uiHandler = UIHandler.instance;
+        if (uiHandler != null && uiHandler.MobileMoveInput.sqrMagnitude > 0f)
+            move = uiHandler.MobileMoveInput;
 
-        // 2. СЕНСОРНЕ УПРАВЛІННЯ
-        if (Pointer.current != null)
-        {
-            if (Pointer.current.press.wasPressedThisFrame)
-            {
-                touchStartPos = Pointer.current.position.ReadValue();
-                isTouching = true;
-            }
-            else if (Pointer.current.press.isPressed && isTouching)
-            {
-                Vector2 touchCurrentPos = Pointer.current.position.ReadValue();
-                Vector2 swipeDirection = touchCurrentPos - touchStartPos;
-                
-                if (swipeDirection.magnitude > 20f)
-                {
-                    move = swipeDirection.normalized;
-                }
-            }
-            else if (Pointer.current.press.wasReleasedThisFrame)
-            {
-                isTouching = false;
-            }
-        }
-
-        // Віддзеркалення спрайта
+        // --- ДОДАНА ЛОГІКА ВІДДЗЕРКАЛЕННЯ (FLIP) ---
         if (move.x < 0) 
         {
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = true;  // Дивимось вліво
         }
         else if (move.x > 0) 
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = false; // Дивимось вправо
         }
 
-        // Анімація бігу та звук кроків <--- ОНОВЛЕНО ТУТ
+        // --- ДОДАНА ЛОГІКА ПЕРЕМИКАННЯ АНІМАЦІЇ (isRunning) ---
         if (move.magnitude > 0)
         {
             animator.SetBool("isRunning", true);
 
             if (footstepsSource != null && !footstepsSource.isPlaying)
-            {
                 footstepsSource.Play();
-            }
         }
         else
         {
             animator.SetBool("isRunning", false);
 
             if (footstepsSource != null && footstepsSource.isPlaying)
-            {
                 footstepsSource.Stop();
-            }
         }
 
-        // Напрямок для стрільби та променів
+        // Ваша оригінальна логіка напрямку (для стрільби та променів)
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
             moveDirection.Set(move.x, move.y);
@@ -128,23 +101,43 @@ public class PlayerController : MonoBehaviour
         }
         
         // Стрільба
-        if (LaunchAction.WasPressedThisFrame())
+        bool mobileShootPressed = uiHandler != null && uiHandler.ConsumeMobileShootPressed();
+        if (LaunchAction.WasPressedThisFrame() || mobileShootPressed)
         {
             Launch();
         }
         
-        // Взаємодія з NPC
-        RaycastHit2D hit = Physics2D.Raycast(
-            rigidbody2d.position + Vector2.up * 0.2f, 
-            moveDirection, 1.5f, LayerMask.GetMask("NPC"));
+        // Кнопка взаємодії з'являється, коли NPC потрапляє у збільшений радіус гравця.
+        Collider2D[] nearbyNpcColliders = Physics2D.OverlapCircleAll(
+            rigidbody2d.position + Vector2.up * 0.2f,
+            npcInteractionRadius,
+            LayerMask.GetMask("NPC"));
 
-        NonPlayerCharacter npc = hit.collider != null
-            ? hit.collider.GetComponent<NonPlayerCharacter>() ??
-              hit.collider.GetComponentInParent<NonPlayerCharacter>()
-            : null;
+        NonPlayerCharacter npc = null;
+        float closestNpcDistance = float.PositiveInfinity;
+        foreach (Collider2D npcCollider in nearbyNpcColliders)
+        {
+            NonPlayerCharacter nearbyNpc = npcCollider.GetComponent<NonPlayerCharacter>() ??
+                npcCollider.GetComponentInParent<NonPlayerCharacter>();
+            if (nearbyNpc == null)
+                continue;
+
+            float distance = ((Vector2)nearbyNpc.transform.position - rigidbody2d.position).sqrMagnitude;
+            if (distance < closestNpcDistance)
+            {
+                closestNpcDistance = distance;
+                npc = nearbyNpc;
+            }
+        }
 
         if (npc != null)
         {
+            if (lastNonPlayerCharacter != null && lastNonPlayerCharacter != npc &&
+                lastNonPlayerCharacter.dialogueBubble != null)
+            {
+                lastNonPlayerCharacter.dialogueBubble.SetActive(false);
+            }
+
             if (npc.dialogueBubble != null)
                 npc.dialogueBubble.SetActive(true);
 
@@ -185,15 +178,16 @@ public class PlayerController : MonoBehaviour
         }
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        // UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
+        UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
     }
 
+    // Цей метод викликається натисканням кнопки (тільки запускає анімацію)
     void Launch()
     {
         animator.SetTrigger("Launch");
     }
 
-    // Викликається в момент пострілу на кадрі анімації
+    // А ЦЕЙ метод ми прив'яжемо до конкретного кадру анімації!
     public void SpawnBulletOnFrame()
     {
         GameObject projectileObject = Instantiate(projectilePrefab,
@@ -201,12 +195,10 @@ public class PlayerController : MonoBehaviour
             Quaternion.identity);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(moveDirection, 300);
+        projectile.Launch(moveDirection, 300); // 300 або ваша швидкість
 
         if (audioSource != null && laserSound != null)
-        {
             audioSource.PlayOneShot(laserSound);
-        }
     }
 
     void FindFriend()
