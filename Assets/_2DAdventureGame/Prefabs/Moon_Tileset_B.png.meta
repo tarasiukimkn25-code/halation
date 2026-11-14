@@ -1,0 +1,3315 @@
+fileFormatVersion: 2
+guid: 22ac469a1bd8849589dd6681e83b156e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5842654646858813530
+    second: Moon_Tileset_B_0
+  - first:
+      213: 5035744561624155241
+    second: Moon_Tileset_B_1
+  - first:
+      213: -7056258024468727988
+    second: Moon_Tileset_B_2
+  - first:
+      213: -1536550811011713599
+    second: Moon_Tileset_B_3
+  - first:
+      213: -1116869204800978303
+    second: Moon_Tileset_B_4
+  - first:
+      213: -7042506720666127811
+    second: Moon_Tileset_B_5
+  - first:
+      213: 8166151968281346607
+    second: Moon_Tileset_B_6
+  - first:
+      213: 7452413890518959257
+    second: Moon_Tileset_B_7
+  - first:
+      213: -6544605867823580293
+    second: Moon_Tileset_B_8
+  - first:
+      213: 6944948098674160249
+    second: Moon_Tileset_B_9
+  - first:
+      213: 5248549564235441456
+    second: Moon_Tileset_B_10
+  - first:
+      213: 5813240897403144413
+    second: Moon_Tileset_B_11
+  - first:
+      213: 1177745528181826744
+    second: Moon_Tileset_B_12
+  - first:
+      213: -4423138369307668650
+    second: Moon_Tileset_B_13
+  - first:
+      213: 8743481997726612264
+    second: Moon_Tileset_B_14
+  - first:
+      213: -2725772080623779540
+    second: Moon_Tileset_B_15
+  - first:
+      213: -2607865614545469858
+    second: Moon_Tileset_B_16
+  - first:
+      213: -5171490381946850194
+    second: Moon_Tileset_B_17
+  - first:
+      213: 6523591258284792296
+    second: Moon_Tileset_B_18
+  - first:
+      213: 6132712872894314483
+    second: Moon_Tileset_B_19
+  - first:
+      213: -7393701039155367810
+    second: Moon_Tileset_B_20
+  - first:
+      213: 7174975474778627561
+    second: Moon_Tileset_B_21
+  - first:
+      213: 2522404765643658114
+    second: Moon_Tileset_B_22
+  - first:
+      213: 3774861047029947002
+    second: Moon_Tileset_B_23
+  - first:
+      213: 105725654460627464
+    second: Moon_Tileset_B_24
+  - first:
+      213: -6661873848376848112
+    second: Moon_Tileset_B_25
+  - first:
+      213: 722001322111345289
+    second: Moon_Tileset_B_26
+  - first:
+      213: -5823466700393727115
+    second: Moon_Tileset_B_27
+  - first:
+      213: -1270757038580537346
+    second: Moon_Tileset_B_28
+  - first:
+      213: 1002593604589267128
+    second: Moon_Tileset_B_29
+  - first:
+      213: -8789359947403896323
+    second: Moon_Tileset_B_30
+  - first:
+      213: 7762005127629865578
+    second: Moon_Tileset_B_31
+  - first:
+      213: 9179399357852956658
+    second: Moon_Tileset_B_32
+  - first:
+      213: -81306838207743644
+    second: Moon_Tileset_B_33
+  - first:
+      213: -990476742633425619
+    second: Moon_Tileset_B_34
+  - first:
+      213: -4774973414652241674
+    second: Moon_Tileset_B_35
+  - first:
+      213: -3505754273855923734
+    second: Moon_Tileset_B_36
+  - first:
+      213: 231313670851968357
+    second: Moon_Tileset_B_37
+  - first:
+      213: 1002505413060876927
+    second: Moon_Tileset_B_38
+  - first:
+      213: 2832286138932454191
+    second: Moon_Tileset_B_39
+  - first:
+      213: -3558609170997492452
+    second: Moon_Tileset_B_40
+  - first:
+      213: -7079736180156261800
+    second: Moon_Tileset_B_41
+  - first:
+      213: 5789250553814714676
+    second: Moon_Tileset_B_42
+  - first:
+      213: 6108314892027485899
+    second: Moon_Tileset_B_43
+  - first:
+      213: -2503474825284746571
+    second: Moon_Tileset_B_44
+  - first:
+      213: -2831568591598544840
+    second: Moon_Tileset_B_45
+  - first:
+      213: -2589376782377737407
+    second: Moon_Tileset_B_46
+  - first:
+      213: 3293949730087210401
+    second: Moon_Tileset_B_47
+  - first:
+      213: 3133543403217333435
+    second: Moon_Tileset_B_48
+  - first:
+      213: -4065845282362500217
+    second: Moon_Tileset_B_49
+  - first:
+      213: -4197647853015633149
+    second: Moon_Tileset_B_50
+  - first:
+      213: 5503692067265372557
+    second: Moon_Tileset_B_51
+  - first:
+      213: 4031612513685862102
+    second: Moon_Tileset_B_52
+  - first:
+      213: 1448462238183331545
+    second: Moon_Tileset_B_53
+  - first:
+      213: -7735130206474396334
+    second: Moon_Tileset_B_54
+  - first:
+      213: 1384976059033900462
+    second: Moon_Tileset_B_55
+  - first:
+      213: -3966638060230568700
+    second: Moon_Tileset_B_56
+  - first:
+      213: -9110502981160124364
+    second: Moon_Tileset_B_57
+  - first:
+      213: 2958864855958479610
+    second: Moon_Tileset_B_58
+  - first:
+      213: 6850679946704511957
+    second: Moon_Tileset_B_59
+  - first:
+      213: -7368111283372004780
+    second: Moon_Tileset_B_60
+  - first:
+      213: -6267612664769309348
+    second: Moon_Tileset_B_61
+  - first:
+      213: 6237511327935167691
+    second: Moon_Tileset_B_62
+  - first:
+      213: 2141272263681150356
+    second: Moon_Tileset_B_63
+  - first:
+      213: 6162962262160318160
+    second: Moon_Tileset_B_64
+  - first:
+      213: -4974315419029483540
+    second: Moon_Tileset_B_65
+  - first:
+      213: -8611602559563268702
+    second: Moon_Tileset_B_66
+  - first:
+      213: 6336953037158254703
+    second: Moon_Tileset_B_67
+  - first:
+      213: -8840773268228281739
+    second: Moon_Tileset_B_68
+  - first:
+      213: 6251689826980524486
+    second: Moon_Tileset_B_69
+  - first:
+      213: -2638918341863756765
+    second: Moon_Tileset_B_70
+  - first:
+      213: 2280580193069722072
+    second: Moon_Tileset_B_71
+  - first:
+      213: -2709200823165400094
+    second: Moon_Tileset_B_72
+  - first:
+      213: 4685910112692330055
+    second: Moon_Tileset_B_73
+  - first:
+      213: -7474652482072531623
+    second: Moon_Tileset_B_74
+  - first:
+      213: 6901631398391775000
+    second: Moon_Tileset_B_75
+  - first:
+      213: -4038307786989872278
+    second: Moon_Tileset_B_76
+  - first:
+      213: -1564313426414964534
+    second: Moon_Tileset_B_77
+  - first:
+      213: 5293925023511904356
+    second: Moon_Tileset_B_78
+  - first:
+      213: -2885444558636845278
+    second: Moon_Tileset_B_79
+  - first:
+      213: 8899020931699590677
+    second: Moon_Tileset_B_80
+  - first:
+      213: -2985207296693719534
+    second: Moon_Tileset_B_81
+  - first:
+      213: -2421517542799440982
+    second: Moon_Tileset_B_82
+  - first:
+      213: 4445075979037297304
+    second: Moon_Tileset_B_83
+  - first:
+      213: -2103201565805117156
+    second: Moon_Tileset_B_84
+  - first:
+      213: 5974564348704001347
+    second: Moon_Tileset_B_85
+  - first:
+      213: 3311517842217103510
+    second: Moon_Tileset_B_86
+  - first:
+      213: -4205879678253259914
+    second: Moon_Tileset_B_87
+  - first:
+      213: 537999141482150358
+    second: Moon_Tileset_B_88
+  - first:
+      213: 3098498196128354867
+    second: Moon_Tileset_B_89
+  - first:
+      213: -5377417535233426496
+    second: Moon_Tileset_B_90
+  - first:
+      213: 5133899412054410372
+    second: Moon_Tileset_B_91
+  - first:
+      213: -4100417459806426113
+    second: Moon_Tileset_B_92
+  - first:
+      213: -5636637969368430918
+    second: Moon_Tileset_B_93
+  - first:
+      213: -2110693563281690816
+    second: Moon_Tileset_B_94
+  - first:
+      213: 92779855204241721
+    second: Moon_Tileset_B_95
+  - first:
+      213: 6826617852238047003
+    second: Moon_Tileset_B_96
+  - first:
+      213: -6196971012448080843
+    second: Moon_Tileset_B_97
+  - first:
+      213: -1380570862992222641
+    second: Moon_Tileset_B_98
+  - first:
+      213: 2942641961151325940
+    second: Moon_Tileset_B_99
+  - first:
+      213: 6577777307398655324
+    second: Moon_Tileset_B_100
+  - first:
+      213: -8222012486900828033
+    second: Moon_Tileset_B_101
+  - first:
+      213: -8417458484925683860
+    second: Moon_Tileset_B_102
+  - first:
+      213: -121293328277001342
+    second: Moon_Tileset_B_103
+  - first:
+      213: -1547168767247355408
+    second: Moon_Tileset_B_104
+  - first:
+      213: 1807503844694766676
+    second: Moon_Tileset_B_105
+  - first:
+      213: -3056289782017023299
+    second: Moon_Tileset_B_106
+  - first:
+      213: 7035776208567392533
+    second: Moon_Tileset_B_107
+  - first:
+      213: -7239664036383970216
+    second: Moon_Tileset_B_108
+  - first:
+      213: -4722719942580182502
+    second: Moon_Tileset_B_109
+  - first:
+      213: 6544381497709865592
+    second: Moon_Tileset_B_110
+  - first:
+      213: 7242225983585836659
+    second: Moon_Tileset_B_111
+  - first:
+      213: 4426293442541086909
+    second: Moon_Tileset_B_112
+  - first:
+      213: -2065842528736228934
+    second: Moon_Tileset_B_113
+  - first:
+      213: 5324201837611855121
+    second: Moon_Tileset_B_114
+  - first:
+      213: 5294149273871237930
+    second: Moon_Tileset_B_115
+  - first:
+      213: 7413725429479017412
+    second: Moon_Tileset_B_116
+  - first:
+      213: 7037432097653759772
+    second: Moon_Tileset_B_117
+  - first:
+      213: -7241189549398267427
+    second: Moon_Tileset_B_118
+  - first:
+      213: 2488576500120119654
+    second: Moon_Tileset_B_119
+  - first:
+      213: -6236310216849230862
+    second: Moon_Tileset_B_120
+  - first:
+      213: -8372355789152104102
+    second: Moon_Tileset_B_121
+  - first:
+      213: -4745001634172305722
+    second: Moon_Tileset_B_122
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Moon_Tileset_B_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 733
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6afe1bced88baeea0800000000000000
+      internalID: -5842654646858813530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_1
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 733
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 964863f8ffe82e540800000000000000
+      internalID: 5035744561624155241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 734
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c47ba0066b2231e90800000000000000
+      internalID: -7056258024468727988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 732
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c5fe4aad231daae0800000000000000
+      internalID: -1536550811011713599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_4
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 720
+        width: 49
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 182c34b20651080f0800000000000000
+      internalID: -1116869204800978303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_5
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 719
+        width: 94
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d32f46a437df34e90800000000000000
+      internalID: -7042506720666127811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_6
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 674
+        width: 126
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f224443f2fff35170800000000000000
+      internalID: 8166151968281346607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_7
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 675
+        width: 141
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 994c197e2fa4c6760800000000000000
+      internalID: 7452413890518959257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_8
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 719
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7b307553a3ec25a0800000000000000
+      internalID: -6544605867823580293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_9
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 719
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9727ff4ff79616060800000000000000
+      internalID: 6944948098674160249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_10
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 685
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 035e84a450896d840800000000000000
+      internalID: 5248549564235441456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 698
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd8cc7bdbc7cca050800000000000000
+      internalID: 5813240897403144413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_12
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 698
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b425136151385010800000000000000
+      internalID: 1177745528181826744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_13
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 699
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65f0401861bdd92c0800000000000000
+      internalID: -4423138369307668650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_14
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 699
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82b748e4d86175970800000000000000
+      internalID: 8743481997726612264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_15
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 672
+        width: 50
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c210eb30cbc1c2ad0800000000000000
+      internalID: -2725772080623779540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_16
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 641
+        width: 94
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5ebf076a000fcbd0800000000000000
+      internalID: -2607865614545469858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_17
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 687
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6475b8b5ec2b38b0800000000000000
+      internalID: -5171490381946850194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_18
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 635
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e998e99fa3788a50800000000000000
+      internalID: 6523591258284792296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_19
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 623
+        width: 50
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f7b45a8dd5cb1550800000000000000
+      internalID: 6132712872894314483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_20
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 531
+        width: 141
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7035b1141c446990800000000000000
+      internalID: -7393701039155367810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_21
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 646
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9edd15efd22a29360800000000000000
+      internalID: 7174975474778627561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_22
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 645
+        width: 32
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28351f325c1610320800000000000000
+      internalID: 2522404765643658114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_23
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 623
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7adda84f10036430800000000000000
+      internalID: 3774861047029947002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_24
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 623
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80a75cd2cec977100800000000000000
+      internalID: 105725654460627464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_25
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 624
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0119801f7054c83a0800000000000000
+      internalID: -6661873848376848112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_26
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 624
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9822fcb8060150a00800000000000000
+      internalID: 722001322111345289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_27
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 589
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57b37b9d3e3ee2fa0800000000000000
+      internalID: -5823466700393727115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_28
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 589
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef76497c43d5d5ee0800000000000000
+      internalID: -1270757038580537346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_29
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 590
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b82f97429de9ed00800000000000000
+      internalID: 1002593604589267128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_30
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 588
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df9d1f322bbe50680800000000000000
+      internalID: -8789359947403896323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_31
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 576
+        width: 49
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a628329e98e28bb60800000000000000
+      internalID: 7762005127629865578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_32
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 575
+        width: 94
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f73648d417c36f70800000000000000
+      internalID: 9179399357852956658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_33
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 530
+        width: 127
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46931d68cd32fdef0800000000000000
+      internalID: -81306838207743644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_34
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 575
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d257c0d76ae1142f0800000000000000
+      internalID: -990476742633425619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_35
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 575
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f818bf6af2ebbdb0800000000000000
+      internalID: -4774973414652241674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_36
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 541
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae9920def0f095fc0800000000000000
+      internalID: -3505754273855923734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_37
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 554
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56db2dede8ac53300800000000000000
+      internalID: 231313670851968357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_38
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 554
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7a56e69c5d99ed00800000000000000
+      internalID: 1002505413060876927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_39
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 555
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f23e45dbc3d4e4720800000000000000
+      internalID: 2832286138932454191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_40
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 555
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c154f3430d74d9ec0800000000000000
+      internalID: -3558609170997492452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_41
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 528
+        width: 50
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85a1e464479bfbd90800000000000000
+      internalID: -7079736180156261800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_42
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 497
+        width: 92
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4390cd7b4bc875050800000000000000
+      internalID: 5789250553814714676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_43
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 543
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bced683f70815c450800000000000000
+      internalID: 6108314892027485899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_44
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 491
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b205ce09eed14dd0800000000000000
+      internalID: -2503474825284746571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_45
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 479
+        width: 50
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8389d944e5f34b8d0800000000000000
+      internalID: -2831568591598544840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_46
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 387
+        width: 141
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1432bb8198fa01cd0800000000000000
+      internalID: -2589376782377737407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_47
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 502
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ad87d1d3d576bd20800000000000000
+      internalID: 3293949730087210401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_48
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 501
+        width: 32
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbca90d7f159c7b20800000000000000
+      internalID: 3133543403217333435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_49
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 479
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78bd519e1473397c0800000000000000
+      internalID: -4065845282362500217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_50
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 479
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30372dc8485feb5c0800000000000000
+      internalID: -4197647853015633149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_51
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 480
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d81ec7e76ca016c40800000000000000
+      internalID: 5503692067265372557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_52
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 480
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d6f346883a23f730800000000000000
+      internalID: 4031612513685862102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_53
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 445
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d61c793bb8f91410800000000000000
+      internalID: 1448462238183331545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_54
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 445
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25d13b74f0c47a490800000000000000
+      internalID: -7735130206474396334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_55
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 446
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea5d225436c683310800000000000000
+      internalID: 1384976059033900462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_56
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 444
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 405996b43bba3f8c0800000000000000
+      internalID: -3966638060230568700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_57
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 432
+        width: 49
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43040d2eecdf09180800000000000000
+      internalID: -9110502981160124364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_58
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 431
+        width: 94
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af2eac5e8efff0920800000000000000
+      internalID: 2958864855958479610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_59
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 387
+        width: 125
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d3e6357d11821f50800000000000000
+      internalID: 6850679946704511957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_60
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 431
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45a601163d53fb990800000000000000
+      internalID: -7368111283372004780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_61
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 431
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c559fa61d77f409a0800000000000000
+      internalID: -6267612664769309348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_62
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 397
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bccfc084187109650800000000000000
+      internalID: 6237511327935167691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_63
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 410
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49d8c1467c357bd10800000000000000
+      internalID: 2141272263681150356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_64
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 410
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0de1430568d378550800000000000000
+      internalID: 6162962262160318160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_65
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 411
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cefcfff3b7ea7fab0800000000000000
+      internalID: -4974315419029483540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_66
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 411
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2adf26a29117d7880800000000000000
+      internalID: -8611602559563268702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_67
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 384
+        width: 50
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f688622763161f750800000000000000
+      internalID: 6336953037158254703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_68
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 353
+        width: 92
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57aeb7f8d834f4580800000000000000
+      internalID: -8840773268228281739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_69
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 399
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c1f81756c672c650800000000000000
+      internalID: 6251689826980524486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_70
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 347
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32ca2f9efbda06bd0800000000000000
+      internalID: -2638918341863756765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_71
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 335
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d966b14a9f36af10800000000000000
+      internalID: 2280580193069722072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_72
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 335
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ebc70e843cf66ad0800000000000000
+      internalID: -2709200823165400094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_73
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 336
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74edf64ab62b70140800000000000000
+      internalID: 4685910112692330055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_74
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 336
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95d23928b23b44890800000000000000
+      internalID: -7474652482072531623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_75
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 335
+        width: 50
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81ff2dfb03587cf50800000000000000
+      internalID: 6901631398391775000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_76
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 293
+        width: 130
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6b56cea67c05f7c0800000000000000
+      internalID: -4038307786989872278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_77
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 293
+        width: 130
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac0792d0a317a4ae0800000000000000
+      internalID: -1564313426414964534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_78
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 308
+        width: 71
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4608afda2ccc77940800000000000000
+      internalID: 5293925023511904356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_79
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 301
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 227fd5f2677d4f7d0800000000000000
+      internalID: -2885444558636845278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_80
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 301
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51648ba636caf7b70800000000000000
+      internalID: 8899020931699590677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_81
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 302
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21eaaaba7c96296d0800000000000000
+      internalID: -2985207296693719534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_82
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 300
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa30014ef9a056ed0800000000000000
+      internalID: -2421517542799440982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_83
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 288
+        width: 49
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89ac32a4d0510bd30800000000000000
+      internalID: 4445075979037297304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_84
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 287
+        width: 93
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c110423b15defc2e0800000000000000
+      internalID: -2103201565805117156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_85
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 253
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34d073cde9ae9e250800000000000000
+      internalID: 5974564348704001347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_86
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 266
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 690f7bcaeefd4fd20800000000000000
+      internalID: 3311517842217103510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_87
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 266
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6732ea167b6b1a5c0800000000000000
+      internalID: -4205879678253259914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_88
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 267
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d932856e5b577700800000000000000
+      internalID: 537999141482150358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_89
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 267
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3325b6d51b3100b20800000000000000
+      internalID: 3098498196128354867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_90
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 240
+        width: 50
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cb74731e339f55b0800000000000000
+      internalID: -5377417535233426496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_91
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 209
+        width: 92
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484071090564f3740800000000000000
+      internalID: 5133899412054410372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_92
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 245
+        width: 130
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffbad659b046817c0800000000000000
+      internalID: -4100417459806426113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_93
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 245
+        width: 130
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab6c05c81a3a6c1b0800000000000000
+      internalID: -5636637969368430918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_94
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 260
+        width: 71
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04f24ea136f45b2e0800000000000000
+      internalID: -2110693563281690816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_95
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 203
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 931d2c769ce994100800000000000000
+      internalID: 92779855204241721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_96
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 191
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b172df384c40dbe50800000000000000
+      internalID: 6826617852238047003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_97
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 191
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53ca3a772bfeff9a0800000000000000
+      internalID: -6196971012448080843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_98
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 192
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f46181c5d1a37dce0800000000000000
+      internalID: -1380570862992222641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_99
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 192
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f6659bd54d56d820800000000000000
+      internalID: 2942641961151325940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_100
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 191
+        width: 50
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5d4f1b4c95f84b50800000000000000
+      internalID: 6577777307398655324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_101
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 197
+        width: 130
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f78337b843b85ed80800000000000000
+      internalID: -8222012486900828033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_102
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 197
+        width: 130
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6728660b1e2f2b80800000000000000
+      internalID: -8417458484925683860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_103
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 212
+        width: 71
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28bac6e4c54115ef0800000000000000
+      internalID: -121293328277001342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_104
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 51
+        width: 141
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f174a4143a578ae0800000000000000
+      internalID: -1547168767247355408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_105
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 166
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4543f219b2b851910800000000000000
+      internalID: 1807503844694766676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_106
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 165
+        width: 34
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db2283cd2a0e595d0800000000000000
+      internalID: -3056289782017023299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_107
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 149
+        width: 130
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 519ddce3f2914a160800000000000000
+      internalID: 7035776208567392533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_108
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 149
+        width: 130
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85ca9229aeb878b90800000000000000
+      internalID: -7239664036383970216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_109
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 164
+        width: 71
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a12ead8fb37857eb0800000000000000
+      internalID: -4722719942580182502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_110
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 51
+        width: 128
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87aa2ad6c4052da50800000000000000
+      internalID: 6544381497709865592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_111
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 95
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37edcbe392e818460800000000000000
+      internalID: 7242225983585836659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_112
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 95
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db86d4a3f6a5d6d30800000000000000
+      internalID: 4426293442541086909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_113
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 68
+        width: 71
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab948c85a27a453e0800000000000000
+      internalID: -2065842528736228934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_114
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 116
+        width: 71
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11d265bcc5d53e940800000000000000
+      internalID: 5324201837611855121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_115
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 116
+        width: 71
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23ccf807b8987940800000000000000
+      internalID: 5294149273871237930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_116
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 116
+        width: 71
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cb806e9ff7d2e660800000000000000
+      internalID: 7413725429479017412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_117
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 63
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1f9597f43bf9a160800000000000000
+      internalID: 7037432097653759772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_118
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 0
+        width: 140
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd968d46870228b90800000000000000
+      internalID: -7241189549398267427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_119
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 22
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6696b0e4423398220800000000000000
+      internalID: 2488576500120119654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_120
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 21
+        width: 33
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f3ff8f26ec2479a0800000000000000
+      internalID: -6236310216849230862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_121
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 12
+        width: 47
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a515766b4ca6fcb80800000000000000
+      internalID: -8372355789152104102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Moon_Tileset_B_122
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 48
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cef280672e562eb0800000000000000
+      internalID: -4745001634172305722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 80490f4a2b4cb4a18aff1f8e7feb779e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Moon_Tileset_B_0: -5842654646858813530
+      Moon_Tileset_B_1: 5035744561624155241
+      Moon_Tileset_B_10: 5248549564235441456
+      Moon_Tileset_B_100: 6577777307398655324
+      Moon_Tileset_B_101: -8222012486900828033
+      Moon_Tileset_B_102: -8417458484925683860
+      Moon_Tileset_B_103: -121293328277001342
+      Moon_Tileset_B_104: -1547168767247355408
+      Moon_Tileset_B_105: 1807503844694766676
+      Moon_Tileset_B_106: -3056289782017023299
+      Moon_Tileset_B_107: 7035776208567392533
+      Moon_Tileset_B_108: -7239664036383970216
+      Moon_Tileset_B_109: -4722719942580182502
+      Moon_Tileset_B_11: 5813240897403144413
+      Moon_Tileset_B_110: 6544381497709865592
+      Moon_Tileset_B_111: 7242225983585836659
+      Moon_Tileset_B_112: 4426293442541086909
+      Moon_Tileset_B_113: -2065842528736228934
+      Moon_Tileset_B_114: 5324201837611855121
+      Moon_Tileset_B_115: 5294149273871237930
+      Moon_Tileset_B_116: 7413725429479017412
+      Moon_Tileset_B_117: 7037432097653759772
+      Moon_Tileset_B_118: -7241189549398267427
+      Moon_Tileset_B_119: 2488576500120119654
+      Moon_Tileset_B_12: 1177745528181826744
+      Moon_Tileset_B_120: -6236310216849230862
+      Moon_Tileset_B_121: -8372355789152104102
+      Moon_Tileset_B_122: -4745001634172305722
+      Moon_Tileset_B_13: -4423138369307668650
+      Moon_Tileset_B_14: 8743481997726612264
+      Moon_Tileset_B_15: -2725772080623779540
+      Moon_Tileset_B_16: -2607865614545469858
+      Moon_Tileset_B_17: -5171490381946850194
+      Moon_Tileset_B_18: 6523591258284792296
+      Moon_Tileset_B_19: 6132712872894314483
+      Moon_Tileset_B_2: -7056258024468727988
+      Moon_Tileset_B_20: -7393701039155367810
+      Moon_Tileset_B_21: 7174975474778627561
+      Moon_Tileset_B_22: 2522404765643658114
+      Moon_Tileset_B_23: 3774861047029947002
+      Moon_Tileset_B_24: 105725654460627464
+      Moon_Tileset_B_25: -6661873848376848112
+      Moon_Tileset_B_26: 722001322111345289
+      Moon_Tileset_B_27: -5823466700393727115
+      Moon_Tileset_B_28: -1270757038580537346
+      Moon_Tileset_B_29: 1002593604589267128
+      Moon_Tileset_B_3: -1536550811011713599
+      Moon_Tileset_B_30: -8789359947403896323
+      Moon_Tileset_B_31: 7762005127629865578
+      Moon_Tileset_B_32: 9179399357852956658
+      Moon_Tileset_B_33: -81306838207743644
+      Moon_Tileset_B_34: -990476742633425619
+      Moon_Tileset_B_35: -4774973414652241674
+      Moon_Tileset_B_36: -3505754273855923734
+      Moon_Tileset_B_37: 231313670851968357
+      Moon_Tileset_B_38: 1002505413060876927
+      Moon_Tileset_B_39: 2832286138932454191
+      Moon_Tileset_B_4: -1116869204800978303
+      Moon_Tileset_B_40: -3558609170997492452
+      Moon_Tileset_B_41: -7079736180156261800
+      Moon_Tileset_B_42: 5789250553814714676
+      Moon_Tileset_B_43: 6108314892027485899
+      Moon_Tileset_B_44: -2503474825284746571
+      Moon_Tileset_B_45: -2831568591598544840
+      Moon_Tileset_B_46: -2589376782377737407
+      Moon_Tileset_B_47: 3293949730087210401
+      Moon_Tileset_B_48: 3133543403217333435
+      Moon_Tileset_B_49: -4065845282362500217
+      Moon_Tileset_B_5: -7042506720666127811
+      Moon_Tileset_B_50: -4197647853015633149
+      Moon_Tileset_B_51: 5503692067265372557
+      Moon_Tileset_B_52: 4031612513685862102
+      Moon_Tileset_B_53: 1448462238183331545
+      Moon_Tileset_B_54: -7735130206474396334
+      Moon_Tileset_B_55: 1384976059033900462
+      Moon_Tileset_B_56: -3966638060230568700
+      Moon_Tileset_B_57: -9110502981160124364
+      Moon_Tileset_B_58: 2958864855958479610
+      Moon_Tileset_B_59: 6850679946704511957
+      Moon_Tileset_B_6: 8166151968281346607
+      Moon_Tileset_B_60: -7368111283372004780
+      Moon_Tileset_B_61: -6267612664769309348
+      Moon_Tileset_B_62: 6237511327935167691
+      Moon_Tileset_B_63: 2141272263681150356
+      Moon_Tileset_B_64: 6162962262160318160
+      Moon_Tileset_B_65: -4974315419029483540
+      Moon_Tileset_B_66: -8611602559563268702
+      Moon_Tileset_B_67: 6336953037158254703
+      Moon_Tileset_B_68: -8840773268228281739
+      Moon_Tileset_B_69: 6251689826980524486
+      Moon_Tileset_B_7: 7452413890518959257
+      Moon_Tileset_B_70: -2638918341863756765
+      Moon_Tileset_B_71: 2280580193069722072
+      Moon_Tileset_B_72: -2709200823165400094
+      Moon_Tileset_B_73: 4685910112692330055
+      Moon_Tileset_B_74: -7474652482072531623
+      Moon_Tileset_B_75: 6901631398391775000
+      Moon_Tileset_B_76: -4038307786989872278
+      Moon_Tileset_B_77: -1564313426414964534
+      Moon_Tileset_B_78: 5293925023511904356
+      Moon_Tileset_B_79: -2885444558636845278
+      Moon_Tileset_B_8: -6544605867823580293
+      Moon_Tileset_B_80: 8899020931699590677
+      Moon_Tileset_B_81: -2985207296693719534
+      Moon_Tileset_B_82: -2421517542799440982
+      Moon_Tileset_B_83: 4445075979037297304
+      Moon_Tileset_B_84: -2103201565805117156
+      Moon_Tileset_B_85: 5974564348704001347
+      Moon_Tileset_B_86: 3311517842217103510
+      Moon_Tileset_B_87: -4205879678253259914
+      Moon_Tileset_B_88: 537999141482150358
+      Moon_Tileset_B_89: 3098498196128354867
+      Moon_Tileset_B_9: 6944948098674160249
+      Moon_Tileset_B_90: -5377417535233426496
+      Moon_Tileset_B_91: 5133899412054410372
+      Moon_Tileset_B_92: -4100417459806426113
+      Moon_Tileset_B_93: -5636637969368430918
+      Moon_Tileset_B_94: -2110693563281690816
+      Moon_Tileset_B_95: 92779855204241721
+      Moon_Tileset_B_96: 6826617852238047003
+      Moon_Tileset_B_97: -6196971012448080843
+      Moon_Tileset_B_98: -1380570862992222641
+      Moon_Tileset_B_99: 2942641961151325940
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

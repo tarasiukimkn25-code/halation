@@ -21,10 +21,13 @@ public class PlayerController : MonoBehaviour
 
     public GameObject projectilePrefab;
     public InputAction LaunchAction;
-
     public InputAction TalkAction;
 
     private NonPlayerCharacter lastNonPlayerCharacter;
+
+    // --- НОВІ ЗМІННІ ДЛЯ СЕНСОРА ТА МИШІ ---
+    private Vector2 touchStartPos;
+    private bool isTouching = false;
 
     void Start()
     {   
@@ -38,15 +41,48 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // 1. Спочатку зчитуємо рух з клавіатури (залишається як було)
         move = MoveAction.ReadValue<Vector2>();
+
+        // 2. ДОДАЄМО СЕНСОРНЕ УПРАВЛІННЯ (Pointer працює і для миші, і для пальця)
+        if (Pointer.current != null)
+        {
+            // Коли натиснули мишку або торкнулися екрана
+            if (Pointer.current.press.wasPressedThisFrame)
+            {
+                touchStartPos = Pointer.current.position.ReadValue();
+                isTouching = true;
+            }
+            // Поки тримаємо і тягнемо
+            else if (Pointer.current.press.isPressed && isTouching)
+            {
+                Vector2 touchCurrentPos = Pointer.current.position.ReadValue();
+                Vector2 swipeDirection = touchCurrentPos - touchStartPos;
+                
+                // Мертва зона (щоб персонаж не дрижав від мінімального руху)
+                if (swipeDirection.magnitude > 20f)
+                {
+                    move = swipeDirection.normalized; // Рухаємось у напрямку свайпу
+                }
+            }
+            // Коли відпустили
+            else if (Pointer.current.press.wasReleasedThisFrame)
+            {
+                isTouching = false;
+            }
+        }
+
+        // Далі йде оригінальна логіка обробки напрямку та анімації
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
             moveDirection.Set(move.x, move.y);
             moveDirection.Normalize();
         }
+        
         animator.SetFloat("Look X", moveDirection.x);
         animator.SetFloat("Look Y", moveDirection.y);
         animator.SetFloat("Speed", move.magnitude);
+        
         if (isInvincible)
         {
             damageCooldown -= Time.deltaTime;
@@ -55,17 +91,19 @@ public class PlayerController : MonoBehaviour
                 isInvincible = false;
             }
         }
+        
         if (LaunchAction.WasPressedThisFrame())
         {
             Launch();
         }
+        
         RaycastHit2D hit = Physics2D.Raycast(
             rigidbody2d.position + Vector2.up * 0.2f,
             moveDirection, 1.5f, LayerMask.GetMask("NPC"));
+            
         if (hit.collider != null)
         {
-            NonPlayerCharacter npc =
-                hit.collider.GetComponent<NonPlayerCharacter>();
+            NonPlayerCharacter npc = hit.collider.GetComponent<NonPlayerCharacter>();
             npc.dialogueBubble.SetActive(true);
             lastNonPlayerCharacter = npc;
             FindFriend();
@@ -82,19 +120,15 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 position = (Vector2)rigidbody2d.position
-            + move * speed * Time.deltaTime; 
+        Vector2 position = (Vector2)rigidbody2d.position + move * speed * Time.deltaTime; 
         rigidbody2d.MovePosition(position);
     }
-
     public void ChangeHealth(int amount)
     {
         if (amount < 0)
         {
-            if (isInvincible)
-            {
-                return;
-            }
+            if (isInvincible) return;
+            
             isInvincible = true;
             damageCooldown = timeInvincible;
             animator.SetTrigger("Hit");
@@ -113,7 +147,7 @@ public class PlayerController : MonoBehaviour
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(moveDirection, 300);
 
-    animator.SetTrigger("Launch");
+        animator.SetTrigger("Launch");
     }
 
     void FindFriend()
@@ -122,5 +156,5 @@ public class PlayerController : MonoBehaviour
         {
             UIHandler.instance.DisplayDialogue();
         }
-}
+    }
 }
