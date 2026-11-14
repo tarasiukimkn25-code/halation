@@ -9,4 +9,5 @@
     </ui:VisualElement>
     <ui:Instance template="NPCDialogue" name="NPCDialogue" style="position: absolute; top: 70%; right: 10%; left: 10%; bottom: 0%;"/>
     <ui:Instance template="EndScreen" name="EndScreen" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;"/>
+    <ui:Button name="TalkButton" text="Поговорити" focusable="false" style="display: none; position: absolute; width: 250px; height: 92px; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-color: rgb(67, 47, 62); border-right-color: rgb(67, 47, 62); border-bottom-color: rgb(67, 47, 62); border-left-color: rgb(67, 47, 62); background-color: rgb(245, 190, 91); color: rgb(45, 35, 51); font-size: 32px; -unity-font-style: bold; -unity-text-align: middle-center;"/>
 </ui:UXML>
