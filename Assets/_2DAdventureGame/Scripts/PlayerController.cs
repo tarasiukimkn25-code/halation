@@ -29,60 +29,81 @@ public class PlayerController : MonoBehaviour
     private Vector2 touchStartPos;
     private bool isTouching = false;
 
+    // --- ДОДАНО ЗМІННУ ДЛЯ ГРАФІКИ ---
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {   
         LaunchAction.Enable();
-        animator = GetComponent<Animator>();
         MoveAction.Enable();
-        rigidbody2d = GetComponent<Rigidbody2D>();
-        currentHealth = maxHealth;
         TalkAction.Enable();
+
+        animator = GetComponent<Animator>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
+        
+        // Отримуємо компонент для віддзеркалення спрайту
+        spriteRenderer = GetComponent<SpriteRenderer>(); 
+        
+        currentHealth = maxHealth;
     }
 
     void Update()
     {
-        // 1. Спочатку зчитуємо рух з клавіатури (залишається як було)
+        // 1. Зчитуємо рух з клавіатури
         move = MoveAction.ReadValue<Vector2>();
 
-        // 2. ДОДАЄМО СЕНСОРНЕ УПРАВЛІННЯ (Pointer працює і для миші, і для пальця)
+        // 2. СЕНСОРНЕ УПРАВЛІННЯ
         if (Pointer.current != null)
         {
-            // Коли натиснули мишку або торкнулися екрана
             if (Pointer.current.press.wasPressedThisFrame)
             {
                 touchStartPos = Pointer.current.position.ReadValue();
                 isTouching = true;
             }
-            // Поки тримаємо і тягнемо
             else if (Pointer.current.press.isPressed && isTouching)
             {
                 Vector2 touchCurrentPos = Pointer.current.position.ReadValue();
                 Vector2 swipeDirection = touchCurrentPos - touchStartPos;
                 
-                // Мертва зона (щоб персонаж не дрижав від мінімального руху)
                 if (swipeDirection.magnitude > 20f)
                 {
-                    move = swipeDirection.normalized; // Рухаємось у напрямку свайпу
+                    move = swipeDirection.normalized;
                 }
             }
-            // Коли відпустили
             else if (Pointer.current.press.wasReleasedThisFrame)
             {
                 isTouching = false;
             }
         }
 
-        // Далі йде оригінальна логіка обробки напрямку та анімації
+        // --- ДОДАНА ЛОГІКА ВІДДЗЕРКАЛЕННЯ (FLIP) ---
+        if (move.x < 0) 
+        {
+            spriteRenderer.flipX = true;  // Дивимось вліво
+        }
+        else if (move.x > 0) 
+        {
+            spriteRenderer.flipX = false; // Дивимось вправо
+        }
+
+        // --- ДОДАНА ЛОГІКА ПЕРЕМИКАННЯ АНІМАЦІЇ (isRunning) ---
+        if (move.magnitude > 0)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
+
+        // Ваша оригінальна логіка напрямку (для стрільби та променів)
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
             moveDirection.Set(move.x, move.y);
             moveDirection.Normalize();
         }
         
-        animator.SetFloat("Look X", moveDirection.x);
-        animator.SetFloat("Look Y", moveDirection.y);
-        animator.SetFloat("Speed", move.magnitude);
-        
+        // Логіка невразливості
         if (isInvincible)
         {
             damageCooldown -= Time.deltaTime;
@@ -92,40 +113,31 @@ public class PlayerController : MonoBehaviour
             }
         }
         
+        // Стрільба
         if (LaunchAction.WasPressedThisFrame())
         {
             Launch();
         }
         
+        // Взаємодія з NPC
         RaycastHit2D hit = Physics2D.Raycast(
             rigidbody2d.position + Vector2.up * 0.2f,
             moveDirection, 1.5f, LayerMask.GetMask("NPC"));
             
-        NonPlayerCharacter npc = hit.collider != null
-            ? hit.collider.GetComponent<NonPlayerCharacter>() ??
-              hit.collider.GetComponentInParent<NonPlayerCharacter>()
-            : null;
-
-        if (npc != null)
+        if (hit.collider != null)
         {
-            if (npc.dialogueBubble != null)
-                npc.dialogueBubble.SetActive(true);
+            NonPlayerCharacter npc = hit.collider.GetComponent<NonPlayerCharacter>();
+            npc.dialogueBubble.SetActive(true);
             lastNonPlayerCharacter = npc;
-            if (UIHandler.instance != null)
-                UIHandler.instance.SetTalkTarget(npc);
             FindFriend();
         }
         else
         {
             if (lastNonPlayerCharacter != null)
             {
-                if (lastNonPlayerCharacter.dialogueBubble != null)
-                    lastNonPlayerCharacter.dialogueBubble.SetActive(false);
+                lastNonPlayerCharacter.dialogueBubble.SetActive(false);
                 lastNonPlayerCharacter = null;
             }
-
-            if (UIHandler.instance != null)
-                UIHandler.instance.SetTalkTarget(null);
         }
     }   
 
@@ -134,6 +146,7 @@ public class PlayerController : MonoBehaviour
         Vector2 position = (Vector2)rigidbody2d.position + move * speed * Time.deltaTime; 
         rigidbody2d.MovePosition(position);
     }
+
     public void ChangeHealth(int amount)
     {
         if (amount < 0)
@@ -149,16 +162,21 @@ public class PlayerController : MonoBehaviour
         UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
     }
 
+    // Цей метод викликається натисканням кнопки (тільки запускає анімацію)
     void Launch()
     {
+        animator.SetTrigger("Launch");
+    }
+
+    // А ЦЕЙ метод ми прив'яжемо до конкретного кадру анімації!
+    public void SpawnBulletOnFrame()
+    {
         GameObject projectileObject = Instantiate(projectilePrefab,
-            rigidbody2d.position + Vector2.up * 0.5f,
+            rigidbody2d.position + Vector2.up * 0.2f, 
             Quaternion.identity);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(moveDirection, 300);
-
-        animator.SetTrigger("Launch");
+        projectile.Launch(moveDirection, 300); // 300 або ваша швидкість
     }
 
     void FindFriend()
