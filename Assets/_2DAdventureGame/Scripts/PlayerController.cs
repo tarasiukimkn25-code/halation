@@ -23,13 +23,18 @@ public class PlayerController : MonoBehaviour
     public InputAction LaunchAction;
     public InputAction TalkAction;
 
+    // --- ЗВУК ЛАЗЕРА ТА КРОКІВ ---
+    public AudioClip laserSound;
+    private AudioSource audioSource;
+    public AudioSource footstepsSource; // <--- ДОДАНО ДЛЯ КРОКІВ
+
     private NonPlayerCharacter lastNonPlayerCharacter;
 
-    // --- НОВІ ЗМІННІ ДЛЯ СЕНСОРА ТА МИШІ ---
+    // --- ЗМІННІ ДЛЯ СЕНСОРА ТА МИШІ ---
     private Vector2 touchStartPos;
     private bool isTouching = false;
 
-    // --- ДОДАНО ЗМІННУ ДЛЯ ГРАФІКИ ---
+    // --- ЗМІННА ДЛЯ ГРАФІКИ ---
     private SpriteRenderer spriteRenderer;
 
     void Start()
@@ -40,11 +45,10 @@ public class PlayerController : MonoBehaviour
 
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
-        
-        // Отримуємо компонент для віддзеркалення спрайту
         spriteRenderer = GetComponent<SpriteRenderer>(); 
         
         currentHealth = maxHealth;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -76,27 +80,37 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // --- ДОДАНА ЛОГІКА ВІДДЗЕРКАЛЕННЯ (FLIP) ---
+        // Віддзеркалення спрайта
         if (move.x < 0) 
         {
-            spriteRenderer.flipX = true;  // Дивимось вліво
+            spriteRenderer.flipX = true;
         }
         else if (move.x > 0) 
         {
-            spriteRenderer.flipX = false; // Дивимось вправо
+            spriteRenderer.flipX = false;
         }
 
-        // --- ДОДАНА ЛОГІКА ПЕРЕМИКАННЯ АНІМАЦІЇ (isRunning) ---
+        // Анімація бігу та звук кроків <--- ОНОВЛЕНО ТУТ
         if (move.magnitude > 0)
         {
             animator.SetBool("isRunning", true);
+
+            if (footstepsSource != null && !footstepsSource.isPlaying)
+            {
+                footstepsSource.Play();
+            }
         }
         else
         {
             animator.SetBool("isRunning", false);
+
+            if (footstepsSource != null && footstepsSource.isPlaying)
+            {
+                footstepsSource.Stop();
+            }
         }
 
-        // Ваша оригінальна логіка напрямку (для стрільби та променів)
+        // Напрямок для стрільби та променів
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
             moveDirection.Set(move.x, move.y);
@@ -121,7 +135,7 @@ public class PlayerController : MonoBehaviour
         
         // Взаємодія з NPC
         RaycastHit2D hit = Physics2D.Raycast(
-            rigidbody2d.position + Vector2.up * 0.2f,
+            rigidbody2d.position + Vector2.up * 0.2f, 
             moveDirection, 1.5f, LayerMask.GetMask("NPC"));
 
         NonPlayerCharacter npc = hit.collider != null
@@ -171,16 +185,15 @@ public class PlayerController : MonoBehaviour
         }
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
+        // UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
     }
 
-    // Цей метод викликається натисканням кнопки (тільки запускає анімацію)
     void Launch()
     {
         animator.SetTrigger("Launch");
     }
 
-    // А ЦЕЙ метод ми прив'яжемо до конкретного кадру анімації!
+    // Викликається в момент пострілу на кадрі анімації
     public void SpawnBulletOnFrame()
     {
         GameObject projectileObject = Instantiate(projectilePrefab,
@@ -188,7 +201,12 @@ public class PlayerController : MonoBehaviour
             Quaternion.identity);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(moveDirection, 300); // 300 або ваша швидкість
+        projectile.Launch(moveDirection, 300);
+
+        if (audioSource != null && laserSound != null)
+        {
+            audioSource.PlayOneShot(laserSound);
+        }
     }
 
     void FindFriend()

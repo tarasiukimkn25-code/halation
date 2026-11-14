@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BreakableCrystal : MonoBehaviour
 {
+    public AudioClip breakSound;
+
     private Animator animator;
     private Collider2D col;
     private bool isBroken = false;
@@ -17,16 +19,18 @@ public class BreakableCrystal : MonoBehaviour
         if (isBroken) return;
         isBroken = true;
 
-        // Додаємо 1 кристал у лічильник UI
+        // Програємо звук розбиття у позиції кристала
+        if (breakSound != null)
+        {
+            AudioSource.PlayClipAtPoint(breakSound, transform.position);
+        }
+
         if (CrystalUI.instance != null)
         {
             CrystalUI.instance.AddCrystal(1);
         }
 
-        // Вимикаємо колайдер, щоб нові кулі не застрягали в уламках
         col.enabled = false;
-        
-        // Запускаємо анімацію розбиття
         animator.SetTrigger("Break");
     }
 

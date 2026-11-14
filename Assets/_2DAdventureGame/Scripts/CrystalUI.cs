@@ -1,11 +1,12 @@
+using System.Collections;
 using UnityEngine;
-using TMPro; // Бібліотека для роботи з TextMeshPro
+using TMPro;
 
 public class CrystalUI : MonoBehaviour
 {
     public static CrystalUI instance;
     public TextMeshProUGUI crystalText;
-    
+    public Transform iconTransform; // Сюди перетягнемо іконку кристала
     private int crystalCount = 0;
 
     void Awake()
@@ -13,22 +14,30 @@ public class CrystalUI : MonoBehaviour
         instance = this;
     }
 
-    void Start()
-    {
-        UpdateUI();
-    }
-
-    public void AddCrystal(int amount = 1)
+    public void AddCrystal(int amount)
     {
         crystalCount += amount;
-        UpdateUI();
+        crystalText.text = "x " + crystalCount.ToString();
+
+        if (iconTransform != null)
+        {
+            StopAllCoroutines();
+            StartCoroutine(PunchIcon());
+        }
     }
 
-    void UpdateUI()
+    IEnumerator PunchIcon()
     {
-        if (crystalText != null)
+        iconTransform.localScale = Vector3.one * 1.3f;
+        float elapsed = 0f;
+        float duration = 0.2f;
+
+        while (elapsed < duration)
         {
-            crystalText.text = crystalCount.ToString();
+            elapsed += Time.deltaTime;
+            iconTransform.localScale = Vector3.Lerp(Vector3.one * 1.3f, Vector3.one, elapsed / duration);
+            yield return null;
         }
+        iconTransform.localScale = Vector3.one;
     }
 }

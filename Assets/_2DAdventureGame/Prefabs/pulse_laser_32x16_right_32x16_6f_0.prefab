@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7480400448787608062}
   - component: {fileID: 5053151882089670954}
   - component: {fileID: 3034305300598335396}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pulse_laser_32x16_right_32x16_6f_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

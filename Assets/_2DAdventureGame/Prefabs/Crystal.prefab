@@ -175,3 +175,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaa9b47b9aaee84d9e22663a4a30898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BreakableCrystal
+  breakSound: {fileID: 8300000, guid: 676cbbddcd0e3a54bab54517499ed2a3, type: 3}
