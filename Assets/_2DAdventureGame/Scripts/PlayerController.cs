@@ -123,21 +123,33 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(
             rigidbody2d.position + Vector2.up * 0.2f,
             moveDirection, 1.5f, LayerMask.GetMask("NPC"));
-            
-        if (hit.collider != null)
+
+        NonPlayerCharacter npc = hit.collider != null
+            ? hit.collider.GetComponent<NonPlayerCharacter>() ??
+              hit.collider.GetComponentInParent<NonPlayerCharacter>()
+            : null;
+
+        if (npc != null)
         {
-            NonPlayerCharacter npc = hit.collider.GetComponent<NonPlayerCharacter>();
-            npc.dialogueBubble.SetActive(true);
+            if (npc.dialogueBubble != null)
+                npc.dialogueBubble.SetActive(true);
+
             lastNonPlayerCharacter = npc;
+            if (UIHandler.instance != null)
+                UIHandler.instance.SetTalkTarget(npc);
             FindFriend();
         }
         else
         {
             if (lastNonPlayerCharacter != null)
             {
-                lastNonPlayerCharacter.dialogueBubble.SetActive(false);
+                if (lastNonPlayerCharacter.dialogueBubble != null)
+                    lastNonPlayerCharacter.dialogueBubble.SetActive(false);
                 lastNonPlayerCharacter = null;
             }
+
+            if (UIHandler.instance != null)
+                UIHandler.instance.SetTalkTarget(null);
         }
     }   
 
@@ -181,9 +193,7 @@ public class PlayerController : MonoBehaviour
 
     void FindFriend()
     {
-        if (TalkAction.WasPressedThisFrame())
-        {
+        if (TalkAction.WasPressedThisFrame() && UIHandler.instance != null)
             UIHandler.instance.DisplayDialogue();
-        }
     }
 }
