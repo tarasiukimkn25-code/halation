@@ -9,10 +9,7 @@ public class CrystalUI : MonoBehaviour
     public TextMeshProUGUI crystalText;
     public Transform iconTransform;
     public GameObject crystalPrefab;
-    public int randomCrystalCount = 29;
-    public int crystalsNearPlayerAtStart = 10;
-    public float nearPlayerSpawnRadius = 4.05f;
-    public float nearPlayerVerticalRadius = 2.55f;
+    public int randomCrystalCount = 8;
     public float crystalRespawnDelay = 5f;
     public Vector2 randomCrystalAreaMin = new Vector2(-22f, 4f);
     public Vector2 randomCrystalAreaMax = new Vector2(24f, 26f);
@@ -35,19 +32,26 @@ public class CrystalUI : MonoBehaviour
 
     private void ScatterCrystalsRandomly()
     {
-        if (crystalPrefab == null)
+        int targetCount = Mathf.Max(0, randomCrystalCount);
+        BreakableCrystal[] existingCrystals = FindObjectsByType<BreakableCrystal>(FindObjectsSortMode.None);
+        List<BreakableCrystal> candidates = new List<BreakableCrystal>(existingCrystals);
+
+        // MainScene contains hand-placed crystals. Shuffle them so the same eight
+        // do not survive every run, then remove extras before placing the start set.
+        for (int i = candidates.Count - 1; i > 0; i--)
         {
-            Debug.LogError("CrystalUI has no crystal prefab assigned in MainScene.");
-            return;
+            int swapIndex = Random.Range(0, i + 1);
+            (candidates[i], candidates[swapIndex]) = (candidates[swapIndex], candidates[i]);
         }
 
-        if (randomCrystalCount <= 0)
-            return;
+        int selectedCount = Mathf.Min(targetCount, candidates.Count);
+        for (int i = selectedCount; i < candidates.Count; i++)
+        {
+            if (candidates[i] != null)
+                Destroy(candidates[i].gameObject);
+        }
 
-        BreakableCrystal[] existingCrystals = FindObjectsByType<BreakableCrystal>(
-            FindObjectsSortMode.None);
         List<Vector2> occupiedPositions = new List<Vector2>();
-
         PlayerController player = FindFirstObjectByType<PlayerController>();
         Vector2 playerPosition = player != null
             ? (Vector2)player.transform.position
@@ -58,15 +62,15 @@ public class CrystalUI : MonoBehaviour
         float minY = Mathf.Min(randomCrystalAreaMin.y, randomCrystalAreaMax.y);
         float maxY = Mathf.Max(randomCrystalAreaMin.y, randomCrystalAreaMax.y);
 
-        // Move the crystals already placed in MainScene so their locations vary each run.
-        foreach (BreakableCrystal crystal in existingCrystals)
+        // Randomize the selected scene crystals across the map.
+        for (int i = 0; i < selectedCount; i++)
         {
+            BreakableCrystal crystal = candidates[i];
             if (crystal == null)
                 continue;
 
-            Vector2 previousPosition = crystal.transform.position;
             if (TryGetRandomCrystalPosition(
-                    false, playerPosition, player != null, occupiedPositions,
+                    playerPosition, player != null, occupiedPositions,
                     minX, maxX, minY, maxY, out Vector2 randomPosition))
             {
                 crystal.transform.position = randomPosition;
@@ -74,167 +78,31 @@ public class CrystalUI : MonoBehaviour
             }
             else
             {
-                occupiedPositions.Add(previousPosition);
+                Destroy(crystal.gameObject);
             }
         }
 
-        int nearPlayerTarget = player != null
-            ? Mathf.Clamp(crystalsNearPlayerAtStart, 0, randomCrystalCount)
-            : 0;
-        int spawnedNearPlayer = SpawnCrystalGroup(
-            nearPlayerTarget, true, player != null, playerPosition,
-            occupiedPositions, minX, maxX, minY, maxY);
-        int remainingCount = randomCrystalCount - spawnedNearPlayer;
-        int spawnedAcrossMap = SpawnCrystalGroup(
-            remainingCount, false, player != null, playerPosition,
-            occupiedPositions, minX, maxX, minY, maxY);
-
-        int totalCrystals = existingCrystals.Length + spawnedNearPlayer + spawnedAcrossMap;
-        Debug.Log($"MainScene crystal spawn: {totalCrystals} total ({existingCrystals.Length} placed + {spawnedNearPlayer + spawnedAcrossMap} spawned at start).");
-    }
-
-    private int SpawnCrystalGroup(
-        int targetCount,
-        bool nearPlayer,
-        bool hasPlayer,
-        Vector2 playerPosition,
-        List<Vector2> occupiedPositions,
-        float minX,
-        float maxX,
-        float minY,
-        float maxY)
-    {
-        if (targetCount <= 0)
-            return 0;
-
-        if (nearPlayer)
-        {
-            return SpawnBalancedNearPlayerGroup(
-                targetCount, playerPosition, hasPlayer, occupiedPositions);
-        }
-
-        return SpawnRandomCrystalGroup(
-            targetCount, false, playerPosition, hasPlayer,
-            occupiedPositions, minX, maxX, minY, maxY);
-    }
-
-    private int SpawnBalancedNearPlayerGroup(
-        int targetCount,
-        Vector2 playerPosition,
-        bool hasPlayer,
-        List<Vector2> occupiedPositions)
-    {
-        // Try evenly spaced ellipse layouts first; the phase varies between runs.
-        float startingPhase = Random.Range(76f, 84f);
-        for (int phaseOffset = 0; phaseOffset < 360; phaseOffset += 2)
-        {
-            float phase = startingPhase + phaseOffset;
-            List<Vector2> layout = new List<Vector2>(targetCount);
-            bool layoutIsClear = true;
-
-            for (int i = 0; i < targetCount; i++)
-            {
-                float angle = (phase + i * 360f / targetCount) * Mathf.Deg2Rad;
-                Vector2 position = playerPosition + new Vector2(
-                    Mathf.Cos(angle) * nearPlayerSpawnRadius,
-                    Mathf.Sin(angle) * nearPlayerVerticalRadius);
-
-                if (!IsCrystalPositionAvailable(
-                        position, playerPosition, hasPlayer, occupiedPositions,
-                        minimumCrystalSpacing))
-                {
-                    layoutIsClear = false;
-                    break;
-                }
-
-                for (int j = 0; j < layout.Count; j++)
-                {
-                    if (Vector2.Distance(position, layout[j]) < minimumCrystalSpacing)
-                    {
-                        layoutIsClear = false;
-                        break;
-                    }
-                }
-
-                if (!layoutIsClear)
-                    break;
-
-                layout.Add(position);
-            }
-
-            if (!layoutIsClear)
-                continue;
-
-            foreach (Vector2 position in layout)
-            {
-                Instantiate(crystalPrefab, position, Quaternion.identity);
-                occupiedPositions.Add(position);
-            }
-
-            return layout.Count;
-        }
-
-        // If a placed scene crystal blocks every ring phase, fill nearby open spots.
-        return SpawnRandomCrystalGroup(
-            targetCount, true, playerPosition, hasPlayer, occupiedPositions,
-            playerPosition.x - nearPlayerSpawnRadius,
-            playerPosition.x + nearPlayerSpawnRadius,
-            playerPosition.y - nearPlayerVerticalRadius,
-            playerPosition.y + nearPlayerVerticalRadius);
-    }
-
-    private int SpawnRandomCrystalGroup(
-        int targetCount,
-        bool nearPlayer,
-        Vector2 playerPosition,
-        bool hasPlayer,
-        List<Vector2> occupiedPositions,
-        float minX,
-        float maxX,
-        float minY,
-        float maxY)
-    {
         int attempts = 0;
-        int placed = 0;
-        int maxAttempts = targetCount * 100;
-
-        while (placed < targetCount && attempts < maxAttempts)
+        int maxAttempts = Mathf.Max(targetCount * 200, 200);
+        while (occupiedPositions.Count < targetCount && crystalPrefab != null && attempts < maxAttempts)
         {
             attempts++;
             if (!TryGetRandomCrystalPosition(
-                    nearPlayer, playerPosition, hasPlayer, occupiedPositions,
-                    minX, maxX, minY, maxY, out Vector2 position))
+                    playerPosition, player != null, occupiedPositions,
+                    minX, maxX, minY, maxY, out Vector2 randomPosition))
                 continue;
 
-            Instantiate(crystalPrefab, position, Quaternion.identity);
-            occupiedPositions.Add(position);
-            placed++;
+            Instantiate(crystalPrefab, randomPosition, Quaternion.identity);
+            occupiedPositions.Add(randomPosition);
         }
 
-        return placed;
-    }
-
-    private bool IsCrystalPositionAvailable(
-        Vector2 position,
-        Vector2 playerPosition,
-        bool hasPlayer,
-        List<Vector2> occupiedPositions,
-        float minimumSpacing)
-    {
-        if (hasPlayer && Vector2.Distance(position, playerPosition) < minimumDistanceFromPlayer)
-            return false;
-
-        for (int i = 0; i < occupiedPositions.Count; i++)
+        if (occupiedPositions.Count != targetCount)
         {
-            if (Vector2.Distance(position, occupiedPositions[i]) < minimumSpacing)
-                return false;
+            Debug.LogWarning($"MainScene placed {occupiedPositions.Count} of {targetCount} starting crystals. Check the spawn area and crystal prefab.");
         }
-
-        return true;
     }
 
     private bool TryGetRandomCrystalPosition(
-        bool nearPlayer,
         Vector2 playerPosition,
         bool hasPlayer,
         List<Vector2> occupiedPositions,
@@ -244,20 +112,10 @@ public class CrystalUI : MonoBehaviour
         float maxY,
         out Vector2 position)
     {
-        const int maxPositionAttempts = 100;
+        const int maxPositionAttempts = 200;
         for (int attempt = 0; attempt < maxPositionAttempts; attempt++)
         {
-            if (nearPlayer)
-            {
-                Vector2 offset = Random.insideUnitCircle;
-                position = playerPosition + new Vector2(
-                    offset.x * nearPlayerSpawnRadius,
-                    offset.y * nearPlayerVerticalRadius);
-            }
-            else
-            {
-                position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-            }
+            position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
 
             if (hasPlayer && Vector2.Distance(position, playerPosition) < minimumDistanceFromPlayer)
                 continue;
@@ -315,7 +173,7 @@ public class CrystalUI : MonoBehaviour
         float maxY = Mathf.Max(randomCrystalAreaMin.y, randomCrystalAreaMax.y);
 
         if (TryGetRandomCrystalPosition(
-                false, playerPosition, player != null, occupiedPositions,
+                playerPosition, player != null, occupiedPositions,
                 minX, maxX, minY, maxY, out Vector2 position))
         {
             Instantiate(crystalPrefab, position, Quaternion.identity);

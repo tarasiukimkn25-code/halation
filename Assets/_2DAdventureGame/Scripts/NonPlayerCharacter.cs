@@ -5,7 +5,7 @@ public class NonPlayerCharacter : MonoBehaviour
     public GameObject dialogueBubble;
     public string encyclopediaFactId;
 
-    void Start()
+    void Awake()
     {
         if (dialogueBubble != null)
             dialogueBubble.SetActive(false);

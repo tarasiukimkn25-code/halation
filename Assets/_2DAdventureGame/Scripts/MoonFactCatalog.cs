@@ -37,13 +37,9 @@ public static class MoonFactCatalog
             "Дослідник",
             ""),
         new MoonFact(
-            "moon_flag",
-            "Місячний прапор",
-            ""),
-        new MoonFact(
             "astronaut47",
             "Астронавт №47",
-            "")
+            "Прапор встановили на Місяці у 1969 році астронавти «Аполлона-11» — Ніл Армстронг і Базз Олдрін. Тут немає вітру, тож прапор тримає металева перекладина. Сонце з часом вибілило тканину.")
     };
 
     public static IReadOnlyList<MoonFact> Facts => s_Facts;

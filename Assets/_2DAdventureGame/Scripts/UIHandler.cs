@@ -11,20 +11,21 @@ public class UIHandler : MonoBehaviour
     private VisualElement m_NonPlayerDialogue;
     private float m_TimerDisplay;
 
-    private VisualElement m_Healthbar;
-
     private VisualElement m_WinScreen;
     private VisualElement m_LoseScreen;
     private VisualElement m_Root;
     private Button m_TalkButton;
+    private Button m_DialogueCloseButton;
+    private Image m_DialogueSpeakerPortrait;
     private Button m_EncyclopediaButton;
     private Button m_EncyclopediaCloseButton;
     private VisualElement m_EncyclopediaPanel;
     private Label m_EncyclopediaCounter;
     private ScrollView m_EncyclopediaFactList;
     private Label m_DialogueText;
-    private string m_DefaultDialogueText;
+    private bool m_DialogueOpen;
     private readonly HashSet<string> m_LearnedFacts = new HashSet<string>();
+    private readonly Dictionary<string, Sprite> m_NpcPortraits = new Dictionary<string, Sprite>();
     private bool m_EncyclopediaOpen;
     private Vector2 m_MobileMoveInput;
     private bool m_MobileShootPressed;
@@ -43,16 +44,25 @@ public class UIHandler : MonoBehaviour
         UIDocument uiDocument = GetComponent<UIDocument>();
         m_Root = uiDocument.rootVisualElement;
 
-        m_Healthbar = m_Root.Q<VisualElement>("HealthBar");
-        SetHealthValue(1.0f);
-
         // НОВЕ (крок 12): ховаємо репліку на старті
         m_NonPlayerDialogue = m_Root.Q<VisualElement>("NPCDialogue");
         if (m_NonPlayerDialogue != null)
             m_NonPlayerDialogue.style.display = DisplayStyle.None;
         m_DialogueText = m_NonPlayerDialogue?.Q<Label>("DialogueText");
         if (m_DialogueText != null)
-            m_DefaultDialogueText = m_DialogueText.text;
+            m_DialogueText.pickingMode = PickingMode.Ignore;
+        m_DialogueSpeakerPortrait = m_NonPlayerDialogue?.Q<Image>("DialogueSpeakerPortrait");
+        if (m_DialogueSpeakerPortrait != null)
+        {
+            m_DialogueSpeakerPortrait.scaleMode = ScaleMode.ScaleToFit;
+            m_DialogueSpeakerPortrait.pickingMode = PickingMode.Ignore;
+        }
+        m_DialogueCloseButton = m_NonPlayerDialogue?.Q<Button>("DialogueCloseButton");
+        if (m_DialogueCloseButton != null)
+        {
+            m_DialogueCloseButton.pickingMode = PickingMode.Position;
+            m_DialogueCloseButton.clicked += CloseDialogue;
+        }
         m_TimerDisplay = -1.0f;
 
         m_TalkButton = m_Root.Q<Button>("TalkButton");
@@ -99,6 +109,8 @@ public class UIHandler : MonoBehaviour
     {
         if (m_TalkButton != null)
             m_TalkButton.clicked -= OnTalkButtonClicked;
+        if (m_DialogueCloseButton != null)
+            m_DialogueCloseButton.clicked -= CloseDialogue;
         if (m_EncyclopediaButton != null)
             m_EncyclopediaButton.clicked -= ToggleEncyclopedia;
         if (m_EncyclopediaCloseButton != null)
@@ -108,20 +120,16 @@ public class UIHandler : MonoBehaviour
             instance = null;
     }
 
-    public void SetHealthValue(float percentage)
-    {
-        m_Healthbar.style.width = Length.Percent(100 * percentage);
-    }
-
     // НОВЕ (крок 12): таймер показу репліки
     private void Update()
     {
         if (m_TimerDisplay > 0)
         {
             m_TimerDisplay -= Time.deltaTime;
-            if (m_TimerDisplay < 0 && m_NonPlayerDialogue != null)
+            if (m_TimerDisplay <= 0 && m_NonPlayerDialogue != null)
             {
                 m_NonPlayerDialogue.style.display = DisplayStyle.None;
+                m_DialogueOpen = false;
             }
         }
     }
@@ -140,7 +148,7 @@ public class UIHandler : MonoBehaviour
         if (m_TalkButton == null)
             return;
 
-        m_TalkButton.style.display = target == null
+        m_TalkButton.style.display = target == null || m_DialogueOpen
             ? DisplayStyle.None
             : DisplayStyle.Flex;
 
@@ -152,6 +160,19 @@ public class UIHandler : MonoBehaviour
     {
         if (m_TalkTarget != null)
             DisplayDialogue();
+    }
+
+    private void CloseDialogue()
+    {
+        m_DialogueOpen = false;
+        m_TimerDisplay = -1f;
+        if (m_NonPlayerDialogue != null)
+            m_NonPlayerDialogue.style.display = DisplayStyle.None;
+
+        if (m_TalkTarget != null)
+            UpdateTalkButtonPosition();
+        else if (m_TalkButton != null)
+            m_TalkButton.style.display = DisplayStyle.None;
     }
 
     private void ToggleEncyclopedia()
@@ -170,8 +191,11 @@ public class UIHandler : MonoBehaviour
             m_EncyclopediaPanel.style.display = DisplayStyle.None;
     }
 
-    private void LearnFact(string factId)
+    private void LearnFact(string factId, Sprite portrait)
     {
+        if (!string.IsNullOrEmpty(factId) && portrait != null)
+            m_NpcPortraits[factId] = portrait;
+
         MoonFact fact = MoonFactCatalog.Find(factId);
         if (fact == null || !m_LearnedFacts.Add(fact.Id))
             return;
@@ -185,7 +209,7 @@ public class UIHandler : MonoBehaviour
         int factCount = MoonFactCatalog.Facts.Count;
 
         if (m_EncyclopediaButton != null)
-            m_EncyclopediaButton.text = $"ФАКТИ МІСЯЦЯ  {learnedCount}/{factCount}";
+            m_EncyclopediaButton.text = $"ДОСЛІДЖЕННЯ  {learnedCount}/{factCount}";
         if (m_EncyclopediaCounter != null)
             m_EncyclopediaCounter.text = $"Вивчено: {learnedCount} із {factCount}";
         if (m_EncyclopediaFactList == null)
@@ -213,6 +237,20 @@ public class UIHandler : MonoBehaviour
                 ? new Color(0.44f, 0.88f, 0.62f)
                 : new Color(0.68f, 0.73f, 0.80f);
             row.Add(checkmark);
+
+            Sprite portrait = GetNpcPortrait(fact.Id);
+            if (portrait != null)
+            {
+                Image portraitIcon = new Image();
+                portraitIcon.sprite = portrait;
+                portraitIcon.scaleMode = ScaleMode.ScaleToFit;
+                portraitIcon.pickingMode = PickingMode.Ignore;
+                portraitIcon.style.width = 48;
+                portraitIcon.style.height = 48;
+                portraitIcon.style.flexShrink = 0;
+                portraitIcon.style.marginRight = 10;
+                row.Add(portraitIcon);
+            }
 
             VisualElement textColumn = new VisualElement();
             textColumn.style.flexGrow = 1;
@@ -277,7 +315,13 @@ public class UIHandler : MonoBehaviour
         if (mainCamera == null)
             return;
 
-        Vector3 worldPosition = m_TalkTarget.transform.position + Vector3.up * 1.55f;
+        if (m_DialogueOpen)
+        {
+            m_TalkButton.style.display = DisplayStyle.None;
+            return;
+        }
+
+        Vector3 worldPosition = m_TalkTarget.transform.position + Vector3.up * 1.0f;
         Vector3 screenPosition = mainCamera.WorldToScreenPoint(worldPosition);
         if (screenPosition.z <= 0)
         {
@@ -295,8 +339,8 @@ public class UIHandler : MonoBehaviour
         float buttonWidth = m_TalkButton.resolvedStyle.width;
         float buttonHeight = m_TalkButton.resolvedStyle.height;
 
-        if (float.IsNaN(buttonWidth)) buttonWidth = 250f;
-        if (float.IsNaN(buttonHeight)) buttonHeight = 92f;
+        if (float.IsNaN(buttonWidth)) buttonWidth = 210f;
+        if (float.IsNaN(buttonHeight)) buttonHeight = 68f;
 
         m_TalkButton.style.left = Mathf.Clamp(panelPosition.x - buttonWidth * 0.5f,
             8f, Mathf.Max(8f, panelWidth - buttonWidth - 8f));
@@ -311,9 +355,22 @@ public class UIHandler : MonoBehaviour
         if (m_NonPlayerDialogue == null)
             return;
 
+        m_DialogueOpen = true;
+        if (m_TalkButton != null)
+            m_TalkButton.style.display = DisplayStyle.None;
+
         MoonFact fact = m_TalkTarget != null
             ? MoonFactCatalog.Find(m_TalkTarget.encyclopediaFactId)
             : null;
+        Sprite portrait = m_TalkTarget != null ? GetNpcPortrait(m_TalkTarget) : null;
+        if (m_DialogueSpeakerPortrait != null)
+        {
+            m_DialogueSpeakerPortrait.sprite = portrait;
+            m_DialogueSpeakerPortrait.style.display = portrait != null
+                ? DisplayStyle.Flex
+                : DisplayStyle.None;
+        }
+
         if (fact != null)
         {
             if (m_DialogueText != null)
@@ -322,17 +379,50 @@ public class UIHandler : MonoBehaviour
                 if (!string.IsNullOrWhiteSpace(fact.Text))
                     m_DialogueText.text += $"\n{fact.Text}";
             }
-            LearnFact(fact.Id);
-            m_TimerDisplay = Mathf.Max(displayTime, 8f);
+            LearnFact(fact.Id, portrait);
+            m_TimerDisplay = Mathf.Max(displayTime, Mathf.Clamp(fact.Text.Length * 0.07f, 8f, 30f));
         }
         else
         {
             if (m_DialogueText != null)
-                m_DialogueText.text = m_DefaultDialogueText;
+                m_DialogueText.text = m_TalkTarget != null
+                    ? m_TalkTarget.gameObject.name
+                    : string.Empty;
             m_TimerDisplay = displayTime;
         }
 
         m_NonPlayerDialogue.style.display = DisplayStyle.Flex;
+    }
+
+    private Sprite GetNpcPortrait(NonPlayerCharacter npc)
+    {
+        if (npc == null)
+            return null;
+
+        SpriteRenderer renderer = npc.GetComponent<SpriteRenderer>();
+        if (renderer == null)
+            renderer = npc.GetComponentInChildren<SpriteRenderer>();
+        return renderer != null ? renderer.sprite : null;
+    }
+
+    private Sprite GetNpcPortrait(string factId)
+    {
+        if (m_NpcPortraits.TryGetValue(factId, out Sprite learnedPortrait) && learnedPortrait != null)
+            return learnedPortrait;
+
+        NonPlayerCharacter[] npcs = FindObjectsByType<NonPlayerCharacter>(FindObjectsSortMode.None);
+        foreach (NonPlayerCharacter npc in npcs)
+        {
+            if (npc != null && npc.encyclopediaFactId == factId)
+            {
+                Sprite portrait = GetNpcPortrait(npc);
+                if (portrait != null)
+                    m_NpcPortraits[factId] = portrait;
+                return portrait;
+            }
+        }
+
+        return null;
     }
 
     public void DisplayWinScreen()
