@@ -21,14 +21,11 @@ public class PlayerController : MonoBehaviour
 
     public GameObject projectilePrefab;
     public InputAction LaunchAction;
-    public InputAction TalkAction;
     public float npcInteractionRadius = 2.6f;
 
     public AudioClip laserSound;
     private AudioSource audioSource;
     public AudioSource footstepsSource;
-
-    private NonPlayerCharacter lastNonPlayerCharacter;
 
     // --- ДОДАНО ЗМІННУ ДЛЯ ГРАФІКИ ---
     private SpriteRenderer spriteRenderer;
@@ -37,7 +34,6 @@ public class PlayerController : MonoBehaviour
     {   
         LaunchAction.Enable();
         MoveAction.Enable();
-        TalkAction.Enable();
 
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -132,29 +128,11 @@ public class PlayerController : MonoBehaviour
 
         if (npc != null)
         {
-            if (lastNonPlayerCharacter != null && lastNonPlayerCharacter != npc &&
-                lastNonPlayerCharacter.dialogueBubble != null)
-            {
-                lastNonPlayerCharacter.dialogueBubble.SetActive(false);
-            }
-
-            if (npc.dialogueBubble != null)
-                npc.dialogueBubble.SetActive(true);
-
-            lastNonPlayerCharacter = npc;
             if (UIHandler.instance != null)
                 UIHandler.instance.SetTalkTarget(npc);
-            FindFriend();
         }
         else
         {
-            if (lastNonPlayerCharacter != null)
-            {
-                if (lastNonPlayerCharacter.dialogueBubble != null)
-                    lastNonPlayerCharacter.dialogueBubble.SetActive(false);
-                lastNonPlayerCharacter = null;
-            }
-
             if (UIHandler.instance != null)
                 UIHandler.instance.SetTalkTarget(null);
         }
@@ -178,7 +156,6 @@ public class PlayerController : MonoBehaviour
         }
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        UIHandler.instance.SetHealthValue(currentHealth / (float)maxHealth);
     }
 
     // Цей метод викликається натисканням кнопки (тільки запускає анімацію)
@@ -201,9 +178,4 @@ public class PlayerController : MonoBehaviour
             audioSource.PlayOneShot(laserSound);
     }
 
-    void FindFriend()
-    {
-        if (TalkAction.WasPressedThisFrame() && UIHandler.instance != null)
-            UIHandler.instance.DisplayDialogue();
-    }
 }
