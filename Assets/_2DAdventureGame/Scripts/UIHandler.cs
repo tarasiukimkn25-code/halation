@@ -8,6 +8,9 @@ public class UIHandler : MonoBehaviour
 
     // НОВЕ (крок 12): поля репліки
     public float displayTime = 4.0f;
+    public AudioSource audioSource;
+    public AudioClip talkSound;
+
     private VisualElement m_NonPlayerDialogue;
     private float m_TimerDisplay;
 
@@ -353,7 +356,10 @@ public class UIHandler : MonoBehaviour
     public void DisplayDialogue()
     {
         if (m_NonPlayerDialogue == null)
-            return;
+        return;
+
+        if (audioSource != null && talkSound != null)
+        audioSource.PlayOneShot(talkSound);
 
         m_DialogueOpen = true;
         if (m_TalkButton != null)
