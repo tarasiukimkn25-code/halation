@@ -1,0 +1,352 @@
+{
+ "dome_geo_blue": {
+  "category": "domes",
+  "size": [
+   321,
+   202
+  ]
+ },
+ "dome_geo_blue_b": {
+  "category": "domes",
+  "size": [
+   309,
+   191
+  ]
+ },
+ "dome_geo_white_solar": {
+  "category": "domes",
+  "size": [
+   381,
+   233
+  ]
+ },
+ "dome_geo_white_small": {
+  "category": "domes",
+  "size": [
+   250,
+   155
+  ]
+ },
+ "dome_flat_antenna": {
+  "category": "domes",
+  "size": [
+   310,
+   182
+  ]
+ },
+ "dome_ribbed": {
+  "category": "domes",
+  "size": [
+   308,
+   194
+  ]
+ },
+ "dome_ribbed_hatch": {
+  "category": "domes",
+  "size": [
+   308,
+   190
+  ]
+ },
+ "dome_ribbed_double": {
+  "category": "domes",
+  "size": [
+   309,
+   191
+  ]
+ },
+ "module_a": {
+  "category": "modules",
+  "size": [
+   203,
+   157
+  ]
+ },
+ "module_b": {
+  "category": "modules",
+  "size": [
+   245,
+   179
+  ]
+ },
+ "module_c": {
+  "category": "modules",
+  "size": [
+   227,
+   169
+  ]
+ },
+ "tube_short": {
+  "category": "modules",
+  "size": [
+   159,
+   130
+  ]
+ },
+ "tube_bend": {
+  "category": "modules",
+  "size": [
+   203,
+   196
+  ]
+ },
+ "tube_window": {
+  "category": "modules",
+  "size": [
+   202,
+   156
+  ]
+ },
+ "airlock_a": {
+  "category": "modules",
+  "size": [
+   182,
+   170
+  ]
+ },
+ "airlock_b": {
+  "category": "modules",
+  "size": [
+   182,
+   170
+  ]
+ },
+ "pod_green": {
+  "category": "modules",
+  "size": [
+   165,
+   176
+  ]
+ },
+ "hub_ring": {
+  "category": "modules",
+  "size": [
+   175,
+   138
+  ]
+ },
+ "solar_a": {
+  "category": "equipment",
+  "size": [
+   203,
+   153
+  ]
+ },
+ "solar_b": {
+  "category": "equipment",
+  "size": [
+   201,
+   155
+  ]
+ },
+ "solar_c": {
+  "category": "equipment",
+  "size": [
+   226,
+   165
+  ]
+ },
+ "gen_fan": {
+  "category": "equipment",
+  "size": [
+   189,
+   145
+  ]
+ },
+ "gen_big": {
+  "category": "equipment",
+  "size": [
+   234,
+   182
+  ]
+ },
+ "gen_small": {
+  "category": "equipment",
+  "size": [
+   141,
+   109
+  ]
+ },
+ "locker_dark": {
+  "category": "equipment",
+  "size": [
+   147,
+   121
+  ]
+ },
+ "tank_cluster": {
+  "category": "equipment",
+  "size": [
+   188,
+   154
+  ]
+ },
+ "tank_tall_a": {
+  "category": "equipment",
+  "size": [
+   189,
+   192
+  ]
+ },
+ "tank_tall_b": {
+  "category": "equipment",
+  "size": [
+   176,
+   178
+  ]
+ },
+ "dish_a": {
+  "category": "equipment",
+  "size": [
+   169,
+   165
+  ]
+ },
+ "dish_b": {
+  "category": "equipment",
+  "size": [
+   154,
+   151
+  ]
+ },
+ "tower_a": {
+  "category": "towers_lights",
+  "size": [
+   255,
+   337
+  ]
+ },
+ "tower_b": {
+  "category": "towers_lights",
+  "size": [
+   268,
+   355
+  ]
+ },
+ "mast_a": {
+  "category": "towers_lights",
+  "size": [
+   159,
+   202
+  ]
+ },
+ "sensor_ring": {
+  "category": "towers_lights",
+  "size": [
+   130,
+   141
+  ]
+ },
+ "sensor_vane": {
+  "category": "towers_lights",
+  "size": [
+   165,
+   160
+  ]
+ },
+ "flood_a": {
+  "category": "towers_lights",
+  "size": [
+   227,
+   256
+  ]
+ },
+ "flood_b": {
+  "category": "towers_lights",
+  "size": [
+   211,
+   228
+  ]
+ },
+ "lamp_box": {
+  "category": "towers_lights",
+  "size": [
+   175,
+   200
+  ]
+ },
+ "crate_a": {
+  "category": "cargo",
+  "size": [
+   183,
+   154
+  ]
+ },
+ "crate_b": {
+  "category": "cargo",
+  "size": [
+   182,
+   150
+  ]
+ },
+ "crate_c": {
+  "category": "cargo",
+  "size": [
+   181,
+   150
+  ]
+ },
+ "crate_blue": {
+  "category": "cargo",
+  "size": [
+   172,
+   142
+  ]
+ },
+ "crate_stack": {
+  "category": "cargo",
+  "size": [
+   209,
+   202
+  ]
+ },
+ "container_cyan": {
+  "category": "cargo",
+  "size": [
+   219,
+   168
+  ]
+ },
+ "container_orange": {
+  "category": "cargo",
+  "size": [
+   219,
+   168
+  ]
+ },
+ "container_gray": {
+  "category": "cargo",
+  "size": [
+   219,
+   168
+  ]
+ },
+ "container_dark": {
+  "category": "cargo",
+  "size": [
+   219,
+   168
+  ]
+ },
+ "container_stack_cyan": {
+  "category": "cargo",
+  "size": [
+   247,
+   220
+  ]
+ },
+ "container_stack_orange": {
+  "category": "cargo",
+  "size": [
+   247,
+   220
+  ]
+ },
+ "container_stack_gray": {
+  "category": "cargo",
+  "size": [
+   247,
+   220
+  ]
+ }
+}
