@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
 public class UIHandler : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class UIHandler : MonoBehaviour
     public AudioClip talkSound;
 
     private VisualElement m_NonPlayerDialogue;
+    private VisualElement m_DialogueCard;
     private float m_TimerDisplay;
 
     private VisualElement m_WinScreen;
@@ -21,6 +23,11 @@ public class UIHandler : MonoBehaviour
     private Button m_DialogueCloseButton;
     private Image m_DialogueSpeakerPortrait;
     private Button m_EncyclopediaButton;
+    private Button m_LevelMenuButton;
+    private Button m_ClaimArtifactButton;
+    private int m_PendingArtifact = -1;
+    private bool m_WandererDialogue;
+    private bool m_RocketDialogue;
     private Button m_EncyclopediaCloseButton;
     private VisualElement m_EncyclopediaPanel;
     private Label m_EncyclopediaCounter;
@@ -47,6 +54,20 @@ public class UIHandler : MonoBehaviour
     // Контейнер лічильника кристалів (знаходимо автоматично)
     private VisualElement m_CrystalHudContainer;
 
+    private sealed class MiniMapMarker
+    {
+        public Transform target;
+        public VisualElement visual;
+    }
+
+    private VisualElement m_MiniMap;
+    private VisualElement m_MiniMapMarkers;
+    private PlayerController m_MiniMapPlayer;
+    private readonly Dictionary<int, MiniMapMarker> m_MiniMapEntries = new Dictionary<int, MiniMapMarker>();
+    private Bounds m_MiniMapBounds;
+    private bool m_MiniMapHasBounds;
+    private float m_NextMiniMapRefresh;
+
     // Віртуальний джойстик (кружочок)
     private VisualElement m_JoystickBase;
     private VisualElement m_JoystickKnob;
@@ -60,23 +81,49 @@ public class UIHandler : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        GameLocalization.LanguageChanged += HandleLanguageChanged;
     }
 
     void Start()
     {
         UIDocument uiDocument = GetComponent<UIDocument>();
         m_Root = uiDocument.rootVisualElement;
+        InitializeMiniMap();
+        // Empty layout containers must not intercept buttons behind them.
+        var mobileControls = m_Root.Q<VisualElement>("MobileControls");
+        if (mobileControls != null) mobileControls.pickingMode = PickingMode.Ignore;
 
         // НОВЕ (крок 12): ховаємо репліку на старті та налаштовуємо адаптивність
         m_NonPlayerDialogue = m_Root.Q<VisualElement>("NPCDialogue");
         if (m_NonPlayerDialogue != null)
         {
+            m_DialogueCard = m_NonPlayerDialogue.Q<VisualElement>("DialogueCard");
             m_NonPlayerDialogue.style.display = DisplayStyle.None;
             m_NonPlayerDialogue.style.position = Position.Absolute;
             m_NonPlayerDialogue.style.top = StyleKeyword.Auto;
 
             // Закриття при натисканні на саме вікно діалогу
-            m_NonPlayerDialogue.RegisterCallback<PointerDownEvent>(evt => CloseDialogue());
+            m_NonPlayerDialogue.RegisterCallback<PointerDownEvent>(evt => {
+                var target = evt.target as VisualElement;
+                if (m_ClaimArtifactButton != null && (target == m_ClaimArtifactButton || (target != null && m_ClaimArtifactButton.Contains(target)))) return;
+                CloseDialogue();
+            });
+            m_ClaimArtifactButton = m_NonPlayerDialogue.Q<Button>("ClaimArtifactButton")
+                ?? new Button { name = "ClaimArtifactButton", text = "Забрати артефакт" };
+            m_ClaimArtifactButton.clicked += ClaimArtifact;
+            m_ClaimArtifactButton.style.position = Position.Absolute;
+            m_ClaimArtifactButton.style.bottom = 12;
+            m_ClaimArtifactButton.style.right = 14;
+            m_ClaimArtifactButton.style.width = Length.Percent(60);
+            m_ClaimArtifactButton.style.maxWidth = 420;
+            m_ClaimArtifactButton.style.height = 58;
+            m_ClaimArtifactButton.style.fontSize = 22;
+            m_ClaimArtifactButton.style.backgroundColor = new Color(.16f,.38f,.43f,.98f);
+            m_ClaimArtifactButton.style.color = Color.white;
+            SetCircleCorners(m_ClaimArtifactButton, 12);
+            m_ClaimArtifactButton.style.display = DisplayStyle.None;
+            var dialogueCard = m_NonPlayerDialogue.Q<VisualElement>("DialogueCard") ?? m_NonPlayerDialogue;
+            dialogueCard.Add(m_ClaimArtifactButton);
         }
 
         m_DialogueText = m_NonPlayerDialogue?.Q<Label>("DialogueText");
@@ -121,6 +168,17 @@ public class UIHandler : MonoBehaviour
             m_TalkButton.clicked += OnTalkButtonClicked;
         }
 
+        m_LevelMenuButton = m_Root.Q<Button>("MoonLevelMenuButton")
+            ?? new Button { name = "MoonLevelMenuButton", text = "Level menu" };
+        m_LevelMenuButton.clicked += () => {
+            Time.timeScale = 1f;
+            MenuManagerBehaviour.OpenLevelSelectorOnNextStart();
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
+        };
+        m_Root.Add(m_LevelMenuButton);
+        m_LevelMenuButton.style.backgroundColor = new Color(.10f, .14f, .27f, .96f);
+        m_LevelMenuButton.style.color = Color.white;
+        SetCircleCorners(m_LevelMenuButton, 14f);
         m_EncyclopediaButton = m_Root.Q<Button>("MoonEncyclopediaButton");
         m_EncyclopediaPanel = m_Root.Q<VisualElement>("MoonEncyclopediaPanel");
         m_EncyclopediaCounter = m_Root.Q<Label>("MoonEncyclopediaCounter");
@@ -152,6 +210,35 @@ public class UIHandler : MonoBehaviour
 
         m_LoseScreen = m_Root.Q<VisualElement>("LoseScreenContainer");
         m_WinScreen = m_Root.Q<VisualElement>("WinScreenContainer");
+        var endScreen = m_Root.Q<VisualElement>("EndScreen");
+        if (endScreen != null) endScreen.pickingMode = PickingMode.Ignore;
+        if (m_WinScreen != null) m_WinScreen.style.display = DisplayStyle.None;
+        if (m_LoseScreen != null) m_LoseScreen.style.display = DisplayStyle.None;
+        ApplyLocalizedLabels();
+    }
+
+    private void ApplyLocalizedLabels()
+    {
+        if (m_LevelMenuButton != null) m_LevelMenuButton.text = GameLocalization.T("level_menu");
+        if (m_TalkButton != null)
+            m_TalkButton.text = GameLocalization.T(m_TalkTarget != null && m_TalkTarget.GetComponent<RocketBehaviour>() != null ? "unlock_flight" : "talk");
+        if (m_EncyclopediaPanel != null)
+        {
+            Label title = m_EncyclopediaPanel.Q<Label>("MoonEncyclopediaTitle");
+            if (title != null) title.text = GameLocalization.T("encyclopedia");
+        }
+        Button shoot = m_Root != null ? m_Root.Q<Button>("ShootButton") : null;
+        if (shoot != null) shoot.tooltip = GameLocalization.T("shoot");
+        RefreshEncyclopedia();
+    }
+
+    private void HandleLanguageChanged()
+    {
+        ApplyLocalizedLabels();
+        if (!m_DialogueOpen || m_TalkTarget == null) return;
+        if (m_WandererDialogue) ShowWandererDialogue();
+        else if (m_RocketDialogue) ShowRocketDialogue();
+        else DisplayDialogue();
     }
 
     private void FindCrystalHudElement()
@@ -172,6 +259,159 @@ public class UIHandler : MonoBehaviour
                     : lbl;
             }
         });
+    }
+
+    private void InitializeMiniMap()
+    {
+        m_MiniMap = m_Root?.Q<VisualElement>("MoonMiniMap");
+        m_MiniMapMarkers = m_MiniMap?.Q<VisualElement>("MoonMiniMapMarkers");
+        if (m_MiniMap == null || m_MiniMapMarkers == null)
+            return;
+
+        m_MiniMap.pickingMode = PickingMode.Ignore;
+        m_MiniMapMarkers.pickingMode = PickingMode.Ignore;
+        m_MiniMapMarkers.style.position = Position.Absolute;
+        m_MiniMapMarkers.style.left = 0;
+        m_MiniMapMarkers.style.right = 0;
+        m_MiniMapMarkers.style.top = 0;
+        m_MiniMapMarkers.style.bottom = 0;
+        RefreshMiniMapBounds();
+    }
+
+    private void RefreshMiniMapBounds()
+    {
+        bool foundBounds = false;
+        Bounds combined = new Bounds();
+        Tilemap[] tilemaps = FindObjectsByType<Tilemap>(FindObjectsSortMode.None);
+        foreach (Tilemap tilemap in tilemaps)
+        {
+            if (tilemap == null || tilemap.cellBounds.size == Vector3Int.zero)
+                continue;
+
+            TilemapRenderer tilemapRenderer = tilemap.GetComponent<TilemapRenderer>();
+            Bounds candidate = tilemapRenderer != null
+                ? tilemapRenderer.bounds
+                : new Bounds(tilemap.transform.TransformPoint(tilemap.localBounds.center), tilemap.localBounds.size);
+            if (candidate.size.x <= 0.01f || candidate.size.y <= 0.01f)
+                continue;
+
+            if (!foundBounds)
+            {
+                combined = candidate;
+                foundBounds = true;
+            }
+            else
+            {
+                combined.Encapsulate(candidate);
+            }
+        }
+
+        if (!foundBounds)
+        {
+            CrystalUI crystalUI = FindFirstObjectByType<CrystalUI>();
+            if (crystalUI != null)
+            {
+                Vector2 min = Vector2.Min(crystalUI.randomCrystalAreaMin, crystalUI.randomCrystalAreaMax);
+                Vector2 max = Vector2.Max(crystalUI.randomCrystalAreaMin, crystalUI.randomCrystalAreaMax);
+                combined = new Bounds((min + max) * 0.5f, max - min);
+                foundBounds = true;
+            }
+        }
+
+        if (!foundBounds)
+            combined = new Bounds(Vector3.zero, new Vector3(48f, 30f, 1f));
+
+        combined.Expand(new Vector3(1f, 1f, 0f));
+        m_MiniMapBounds = combined;
+        m_MiniMapHasBounds = true;
+    }
+
+    private void UpdateMiniMapMarkers()
+    {
+        if (m_MiniMapMarkers == null || Time.unscaledTime < m_NextMiniMapRefresh)
+            return;
+
+        m_NextMiniMapRefresh = Time.unscaledTime + 0.2f;
+        if (!m_MiniMapHasBounds)
+            RefreshMiniMapBounds();
+
+        if (m_MiniMapPlayer == null)
+            m_MiniMapPlayer = FindFirstObjectByType<PlayerController>();
+
+        HashSet<int> visibleEntries = new HashSet<int>();
+        if (m_MiniMapPlayer != null)
+            UpdateMiniMapMarker(m_MiniMapPlayer.transform, new Color(0.2f, 0.95f, 1f), "Player", 10f, visibleEntries);
+
+        NonPlayerCharacter[] characters = FindObjectsByType<NonPlayerCharacter>(FindObjectsSortMode.None);
+        foreach (NonPlayerCharacter character in characters)
+            if (character != null)
+                UpdateMiniMapMarker(character.transform, new Color(1f, 0.72f, 0.25f), "Explorer", 7f, visibleEntries);
+
+        BreakableCrystal[] crystals = FindObjectsByType<BreakableCrystal>(FindObjectsSortMode.None);
+        foreach (BreakableCrystal crystal in crystals)
+            if (crystal != null)
+                UpdateMiniMapMarker(crystal.transform, new Color(0.78f, 0.42f, 1f), "Crystal", 6f, visibleEntries);
+
+        List<int> staleEntries = null;
+        foreach (KeyValuePair<int, MiniMapMarker> entry in m_MiniMapEntries)
+        {
+            if (!visibleEntries.Contains(entry.Key))
+            {
+                entry.Value.visual.RemoveFromHierarchy();
+                if (staleEntries == null) staleEntries = new List<int>();
+                staleEntries.Add(entry.Key);
+            }
+        }
+
+        if (staleEntries != null)
+            foreach (int id in staleEntries) m_MiniMapEntries.Remove(id);
+    }
+
+    private void UpdateMiniMapMarker(Transform target, Color color, string tooltip, float size, HashSet<int> visibleEntries)
+    {
+        if (target == null)
+            return;
+
+        int id = target.GetInstanceID();
+        visibleEntries.Add(id);
+        if (!m_MiniMapEntries.TryGetValue(id, out MiniMapMarker marker))
+        {
+            VisualElement dot = new VisualElement();
+            dot.name = "MiniMap-" + tooltip;
+            dot.pickingMode = PickingMode.Ignore;
+            dot.style.position = Position.Absolute;
+            dot.style.width = size;
+            dot.style.height = size;
+            dot.style.backgroundColor = color;
+            dot.style.borderTopLeftRadius = Length.Percent(50);
+            dot.style.borderTopRightRadius = Length.Percent(50);
+            dot.style.borderBottomLeftRadius = Length.Percent(50);
+            dot.style.borderBottomRightRadius = Length.Percent(50);
+            dot.style.borderTopWidth = 1;
+            dot.style.borderRightWidth = 1;
+            dot.style.borderBottomWidth = 1;
+            dot.style.borderLeftWidth = 1;
+            dot.style.borderTopColor = new Color(0.05f, 0.1f, 0.18f, 0.95f);
+            dot.style.borderRightColor = dot.style.borderTopColor;
+            dot.style.borderBottomColor = dot.style.borderTopColor;
+            dot.style.borderLeftColor = dot.style.borderTopColor;
+            dot.tooltip = tooltip;
+            m_MiniMapMarkers.Add(dot);
+            marker = new MiniMapMarker { target = target, visual = dot };
+            m_MiniMapEntries.Add(id, marker);
+        }
+
+        marker.target = target;
+        float width = m_MiniMapMarkers.layout.width;
+        float height = m_MiniMapMarkers.layout.height;
+        if (width <= 0f || height <= 0f)
+            return;
+
+        Vector3 position = target.position;
+        float x = Mathf.Clamp01((position.x - m_MiniMapBounds.min.x) / Mathf.Max(0.01f, m_MiniMapBounds.size.x));
+        float y = Mathf.Clamp01((position.y - m_MiniMapBounds.min.y) / Mathf.Max(0.01f, m_MiniMapBounds.size.y));
+        marker.visual.style.left = x * width - size * 0.5f;
+        marker.visual.style.top = (1f - y) * height - size * 0.5f;
     }
 
     private void SetupShootButton()
@@ -356,26 +596,51 @@ public class UIHandler : MonoBehaviour
 
         if (isPortrait)
         {
-            // Вертикальний телефон: ставимо вікно вище кнопок керування (bottom = 42%)
-            m_NonPlayerDialogue.style.bottom = Length.Percent(42);
-            m_NonPlayerDialogue.style.left = Length.Percent(4);
-            m_NonPlayerDialogue.style.right = Length.Percent(4);
-            m_NonPlayerDialogue.style.height = Length.Percent(24);
+            // На телефоні картка нижча й компактніша, щоб персонаж залишався видимим.
+            m_NonPlayerDialogue.style.bottom = Length.Percent(18);
+            m_NonPlayerDialogue.style.left = Length.Percent(3);
+            m_NonPlayerDialogue.style.right = Length.Percent(3);
+            m_NonPlayerDialogue.style.height = Length.Percent(28);
 
-            if (m_DialogueText != null)
-                m_DialogueText.style.fontSize = 36;
+            if (m_DialogueCard != null)
+            {
+                m_DialogueCard.style.left = Length.Percent(2);
+                m_DialogueCard.style.right = Length.Percent(2);
+                m_DialogueCard.style.top = Length.Percent(2);
+                m_DialogueCard.style.bottom = Length.Percent(2);
+            }
+
+            UpdateDialogueTextSize(true);
         }
         else
         {
             // Ноутбук / горизонтальний екран
-            m_NonPlayerDialogue.style.bottom = showMobileControls ? Length.Percent(38) : Length.Percent(3);
+            float canvasScale = Mathf.Min(Screen.width / 960f, Screen.height / 640f);
+            float reservedBottom = (Screen.safeArea.yMin + 112f * canvasScale) * height / Mathf.Max(1, Screen.height);
+            m_NonPlayerDialogue.style.bottom = showMobileControls ? Length.Percent(38) : new Length(reservedBottom);
             m_NonPlayerDialogue.style.left = Length.Percent(10);
             m_NonPlayerDialogue.style.right = Length.Percent(10);
             m_NonPlayerDialogue.style.height = Length.Percent(35);
 
-            if (m_DialogueText != null)
-                m_DialogueText.style.fontSize = 26;
+            if (m_DialogueCard != null)
+            {
+                m_DialogueCard.style.left = Length.Percent(12);
+                m_DialogueCard.style.right = Length.Percent(12);
+                m_DialogueCard.style.top = Length.Percent(14);
+                m_DialogueCard.style.bottom = Length.Percent(10);
+            }
+
+            UpdateDialogueTextSize(false);
         }
+    }
+
+    private void UpdateDialogueTextSize(bool isPortrait)
+    {
+        if (m_DialogueText == null)
+            return;
+
+        int textLength = m_DialogueText.text != null ? m_DialogueText.text.Length : 0;
+        m_DialogueText.style.fontSize = !isPortrait ? 30 : textLength > 320 ? 32 : textLength > 220 ? 34 : 36;
     }
 
     private void UpdateTopCornerHUD(bool isPortrait)
@@ -383,12 +648,36 @@ public class UIHandler : MonoBehaviour
         if (m_CrystalHudContainer == null)
             FindCrystalHudElement();
 
+        float panelWidth = m_Root.layout.width;
+        float panelHeight = m_Root.layout.height;
+        float unit = Mathf.Max(1f, Mathf.Min(panelWidth, panelHeight) / 640f);
+        float safeTop = (Screen.height - Screen.safeArea.yMax) * panelHeight / Mathf.Max(1, Screen.height);
+        float safeLeft = Screen.safeArea.xMin * panelWidth / Mathf.Max(1, Screen.width);
+        float safeRight = (Screen.width - Screen.safeArea.xMax) * panelWidth / Mathf.Max(1, Screen.width);
+        float inset = 16f * unit;
+        float safeWidth = Screen.safeArea.width * panelWidth / Mathf.Max(1, Screen.width);
+        float miniMapWidth = Mathf.Min((isPortrait ? 142f : 154f) * unit, safeWidth * .33f);
+        float miniMapHeight = (isPortrait ? 92f : 104f) * unit;
+
+        if (m_MiniMap != null)
+        {
+            m_MiniMap.style.position = Position.Absolute;
+            m_MiniMap.style.left = safeLeft + inset;
+            m_MiniMap.style.top = safeTop + inset;
+            m_MiniMap.style.width = miniMapWidth;
+            m_MiniMap.style.height = miniMapHeight;
+        }
+
         // 1. Лівий верхній кут: лічильник кристалів
         if (m_CrystalHudContainer != null)
         {
             m_CrystalHudContainer.style.position = Position.Absolute;
-            m_CrystalHudContainer.style.top = isPortrait ? 36 : 18;
-            m_CrystalHudContainer.style.left = isPortrait ? 24 : 18;
+            m_CrystalHudContainer.style.top = m_MiniMap != null
+                ? safeTop + inset + miniMapHeight * 0.5f - 22f * unit
+                : (isPortrait ? 36f : 18f);
+            m_CrystalHudContainer.style.left = m_MiniMap != null
+                ? safeLeft + inset + miniMapWidth + 10f * unit
+                : (isPortrait ? 24f : 18f);
             m_CrystalHudContainer.style.right = StyleKeyword.Auto;
             m_CrystalHudContainer.style.bottom = StyleKeyword.Auto;
 
@@ -397,33 +686,34 @@ public class UIHandler : MonoBehaviour
             m_CrystalHudContainer.style.transformOrigin = new TransformOrigin(Length.Percent(0), Length.Percent(0));
         }
 
+        inset = 20f * unit;
+        const float topHudScale = 1.25f;
+        if (m_LevelMenuButton != null)
+        {
+            m_LevelMenuButton.style.position = Position.Absolute;
+            m_LevelMenuButton.style.top = safeTop + inset;
+            m_LevelMenuButton.style.right = safeRight + inset;
+            m_LevelMenuButton.style.width = 164f * unit * topHudScale;
+            m_LevelMenuButton.style.height = 48f * unit * topHudScale;
+            m_LevelMenuButton.style.fontSize = 18f * unit * topHudScale;
+        }
+
         // 2. Правий верхній кут: кнопка енциклопедії ("ДОСЛІДЖЕННЯ 0/5")
         if (m_EncyclopediaButton != null)
         {
             m_EncyclopediaButton.style.position = Position.Absolute;
-            m_EncyclopediaButton.style.top = isPortrait ? 36 : 18;
-            m_EncyclopediaButton.style.right = isPortrait ? 24 : 18;
+            m_EncyclopediaButton.style.top = safeTop + inset + 60f * unit * topHudScale;
+            m_EncyclopediaButton.style.right = safeRight + inset;
             m_EncyclopediaButton.style.left = StyleKeyword.Auto;
             m_EncyclopediaButton.style.bottom = StyleKeyword.Auto;
 
-            if (isPortrait)
-            {
-                m_EncyclopediaButton.style.fontSize = 42;
-                m_EncyclopediaButton.style.paddingLeft = 34;
-                m_EncyclopediaButton.style.paddingRight = 34;
-                m_EncyclopediaButton.style.paddingTop = 22;
-                m_EncyclopediaButton.style.paddingBottom = 22;
-                m_EncyclopediaButton.style.height = StyleKeyword.Auto;
-                m_EncyclopediaButton.style.width = StyleKeyword.Auto;
-            }
-            else
-            {
-                m_EncyclopediaButton.style.fontSize = 18;
-                m_EncyclopediaButton.style.paddingLeft = 14;
-                m_EncyclopediaButton.style.paddingRight = 14;
-                m_EncyclopediaButton.style.paddingTop = 8;
-                m_EncyclopediaButton.style.paddingBottom = 8;
-            }
+            m_EncyclopediaButton.style.fontSize = 17f * unit * topHudScale;
+            m_EncyclopediaButton.style.width = 240f * unit * topHudScale;
+            m_EncyclopediaButton.style.height = 48f * unit * topHudScale;
+            m_EncyclopediaButton.style.paddingLeft = 12;
+            m_EncyclopediaButton.style.paddingRight = 12;
+            m_EncyclopediaButton.style.paddingTop = 6;
+            m_EncyclopediaButton.style.paddingBottom = 6;
         }
 
         // 3. Вікно відкритої енциклопедії на телефоні
@@ -431,7 +721,7 @@ public class UIHandler : MonoBehaviour
         {
             m_EncyclopediaPanel.style.left = Length.Percent(5);
             m_EncyclopediaPanel.style.right = Length.Percent(5);
-            m_EncyclopediaPanel.style.top = 155;
+            m_EncyclopediaPanel.style.top = safeTop + inset + 150f * unit * topHudScale;
             m_EncyclopediaPanel.style.width = StyleKeyword.Auto;
         }
     }
@@ -514,6 +804,7 @@ public class UIHandler : MonoBehaviour
 
     private void OnDestroy()
     {
+        GameLocalization.LanguageChanged -= HandleLanguageChanged;
         if (m_TalkButton != null)
             m_TalkButton.clicked -= OnTalkButtonClicked;
         if (m_DialogueCloseButton != null)
@@ -530,6 +821,8 @@ public class UIHandler : MonoBehaviour
     // НОВЕ (крок 12): таймер показу репліки
     private void Update()
     {
+        UpdateMiniMapMarkers();
+
         if (m_TimerDisplay > 0)
         {
             m_TimerDisplay -= Time.deltaTime;
@@ -561,6 +854,11 @@ public class UIHandler : MonoBehaviour
 
         if (m_TalkButton == null)
             return;
+
+        bool isRocket = target != null && target.GetComponent<RocketBehaviour>() != null;
+        m_TalkButton.text = GameLocalization.T(isRocket ? "unlock_flight" : "talk");
+        m_TalkButton.style.width = isRocket ? 260 : 210;
+        m_TalkButton.style.fontSize = isRocket ? 20 : 24;
 
         m_TalkButton.style.display = target == null || m_DialogueOpen
             ? DisplayStyle.None
@@ -623,9 +921,9 @@ public class UIHandler : MonoBehaviour
         int factCount = MoonFactCatalog.Facts.Count;
 
         if (m_EncyclopediaButton != null)
-            m_EncyclopediaButton.text = $"ДОСЛІДЖЕННЯ  {learnedCount}/{factCount}";
+            m_EncyclopediaButton.text = string.Format(GameLocalization.T("research"), learnedCount, factCount);
         if (m_EncyclopediaCounter != null)
-            m_EncyclopediaCounter.text = $"Вивчено: {learnedCount} із {factCount}";
+            m_EncyclopediaCounter.text = string.Format(GameLocalization.T("learned"), learnedCount, factCount);
         if (m_EncyclopediaFactList == null)
             return;
 
@@ -703,16 +1001,18 @@ public class UIHandler : MonoBehaviour
             return;
         }
 
-        // Жорстка прив'язка прямо до верхньої межі спрайта самого NPC
+        bool isRocket = m_TalkTarget.GetComponent<RocketBehaviour>() != null;
         Vector3 worldPosition = m_TalkTarget.transform.position + Vector3.up * 0.85f;
         SpriteRenderer npcSprite = m_TalkTarget.GetComponentInChildren<SpriteRenderer>();
         if (npcSprite != null)
         {
-            worldPosition = new Vector3(
-                npcSprite.bounds.center.x,
-                npcSprite.bounds.max.y + 0.15f,
-                m_TalkTarget.transform.position.z
-            );
+            worldPosition = isRocket
+                ? npcSprite.bounds.center
+                : new Vector3(
+                    npcSprite.bounds.center.x,
+                    npcSprite.bounds.max.y + 0.15f,
+                    m_TalkTarget.transform.position.z
+                );
         }
 
         Vector3 screenPosition = mainCamera.WorldToScreenPoint(worldPosition);
@@ -728,9 +1028,9 @@ public class UIHandler : MonoBehaviour
             return;
 
         bool isPortrait = panelHeight > panelWidth;
-        float talkScale = isPortrait ? 2.5f : 1.15f;
+        float talkScale = isPortrait ? (isRocket ? 1.4f : 2.5f) : 1.15f;
 
-        m_TalkButton.style.transformOrigin = new TransformOrigin(Length.Percent(50), Length.Percent(100));
+        m_TalkButton.style.transformOrigin = new TransformOrigin(Length.Percent(50), isRocket ? Length.Percent(50) : Length.Percent(100));
         m_TalkButton.style.scale = new Scale(new Vector3(talkScale, talkScale, 1f));
 
         Vector2 panelPosition = RuntimePanelUtils.CameraTransformWorldToPanel(
@@ -743,17 +1043,85 @@ public class UIHandler : MonoBehaviour
 
         float scaledHalfW = buttonWidth * 0.5f * talkScale;
         float scaledH = buttonHeight * talkScale;
+        float scaledVerticalInset = isRocket ? (scaledH - buttonHeight) * .5f : scaledH - buttonHeight;
 
         m_TalkButton.style.left = Mathf.Clamp(panelPosition.x - buttonWidth * 0.5f,
             scaledHalfW - buttonWidth * 0.5f + 8f,
             Mathf.Max(8f, panelWidth - buttonWidth * 0.5f - scaledHalfW - 8f));
-        m_TalkButton.style.top = Mathf.Clamp(panelPosition.y - buttonHeight,
-            scaledH - buttonHeight + 8f,
-            Mathf.Max(8f, panelHeight - buttonHeight - 8f));
+        float verticalOffset = isRocket ? buttonHeight * .5f : buttonHeight;
+        m_TalkButton.style.top = Mathf.Clamp(panelPosition.y - verticalOffset,
+            scaledVerticalInset + 8f,
+            Mathf.Max(8f, panelHeight - buttonHeight - (isRocket ? scaledVerticalInset : 0f) - 8f));
         m_TalkButton.style.display = DisplayStyle.Flex;
     }
 
     // НОВЕ (крок 12): показати репліку
+    private void ClaimArtifact()
+    {
+        if (m_RocketDialogue)
+        {
+            RocketBehaviour rocket = m_TalkTarget != null ? m_TalkTarget.GetComponent<RocketBehaviour>() : null;
+            if (rocket == null || !rocket.TryOpenMinigame())
+            {
+                ShowRocketDialogue();
+                return;
+            }
+
+            m_RocketDialogue = false;
+            m_DialogueOpen = false;
+            if (m_NonPlayerDialogue != null)
+                m_NonPlayerDialogue.style.display = DisplayStyle.None;
+            return;
+        }
+
+        if (m_WandererDialogue)
+        {
+            MoonInventory.DeliverToWanderer();
+            ShowWandererDialogue();
+            return;
+        }
+        if (m_PendingArtifact < 0 || !MoonInventory.Collect(m_PendingArtifact)) return;
+        m_PendingArtifact = -1;
+        m_ClaimArtifactButton.style.display = DisplayStyle.None;
+        if (m_DialogueText != null) m_DialogueText.style.bottom = 10;
+        m_TimerDisplay = 4f;
+    }
+
+    private void ShowWandererDialogue()
+    {
+        m_RocketDialogue = false;
+        m_WandererDialogue = true;
+        m_PendingArtifact = -1;
+        if (m_DialogueText != null)
+            m_DialogueText.text = GameLocalization.T("wanderer_name") + "\n" + LunarWanderer.GetDialogue();
+        UpdateDialogueTextSize(m_Root != null && m_Root.layout.height > m_Root.layout.width);
+        m_ClaimArtifactButton.text = GameLocalization.T("give_artifacts");
+        m_ClaimArtifactButton.SetEnabled(MoonInventory.CanDeliver);
+        m_ClaimArtifactButton.style.display = MoonInventory.Delivered ? DisplayStyle.None : DisplayStyle.Flex;
+        if (m_DialogueText != null) m_DialogueText.style.bottom = MoonInventory.Delivered ? 10 : 82;
+        m_TimerDisplay = -1f;
+        m_NonPlayerDialogue.BringToFront();
+        m_NonPlayerDialogue.style.display = DisplayStyle.Flex;
+    }
+
+    private void ShowRocketDialogue()
+    {
+        m_RocketDialogue = true;
+        m_WandererDialogue = false;
+        m_PendingArtifact = -1;
+        bool unlocked = MoonInventory.Delivered;
+        if (m_DialogueText != null)
+            m_DialogueText.text = GameLocalization.T("rocket_name") + "\n" + RocketBehaviour.GetDialogue();
+        UpdateDialogueTextSize(m_Root != null && m_Root.layout.height > m_Root.layout.width);
+        m_ClaimArtifactButton.text = GameLocalization.T(unlocked ? "open_minigame" : "need_rocket_key");
+        m_ClaimArtifactButton.SetEnabled(unlocked);
+        m_ClaimArtifactButton.style.display = DisplayStyle.Flex;
+        if (m_DialogueText != null) m_DialogueText.style.bottom = 82;
+        m_TimerDisplay = -1f;
+        m_NonPlayerDialogue.BringToFront();
+        m_NonPlayerDialogue.style.display = DisplayStyle.Flex;
+    }
+
     public void DisplayDialogue()
     {
         if (m_NonPlayerDialogue == null)
@@ -768,6 +1136,22 @@ public class UIHandler : MonoBehaviour
         if (m_TalkButton != null)
             m_TalkButton.style.display = DisplayStyle.None;
 
+        m_RocketDialogue = m_TalkTarget != null && m_TalkTarget.GetComponent<RocketBehaviour>() != null;
+        if (m_RocketDialogue)
+        {
+            ShowRocketDialogue();
+            return;
+        }
+
+        m_WandererDialogue = m_TalkTarget != null && m_TalkTarget.GetComponent<LunarWanderer>() != null;
+        if (m_WandererDialogue)
+        {
+            ShowWandererDialogue();
+            return;
+        }
+        m_RocketDialogue = false;
+        m_ClaimArtifactButton.text = GameLocalization.T("claim_artifact");
+        m_ClaimArtifactButton.SetEnabled(true);
         MoonFact fact = m_TalkTarget != null
             ? MoonFactCatalog.Find(m_TalkTarget.encyclopediaFactId)
             : null;
@@ -783,6 +1167,7 @@ public class UIHandler : MonoBehaviour
                 m_DialogueText.text = fact.CharacterName;
                 if (!string.IsNullOrWhiteSpace(fact.Text))
                     m_DialogueText.text += $"\n{fact.Text}";
+                UpdateDialogueTextSize(m_Root != null && m_Root.layout.height > m_Root.layout.width);
             }
             LearnFact(fact.Id, portrait);
             m_TimerDisplay = Mathf.Max(displayTime, Mathf.Clamp(fact.Text.Length * 0.07f, 8f, 30f));
@@ -790,12 +1175,29 @@ public class UIHandler : MonoBehaviour
         else
         {
             if (m_DialogueText != null)
+            {
                 m_DialogueText.text = m_TalkTarget != null
                     ? m_TalkTarget.gameObject.name
                     : string.Empty;
+                UpdateDialogueTextSize(m_Root != null && m_Root.layout.height > m_Root.layout.width);
+            }
             m_TimerDisplay = displayTime;
         }
 
+        m_PendingArtifact = -1;
+        if (fact != null)
+            for (int i = 0; i < MoonFactCatalog.Facts.Count; i++)
+                if (MoonFactCatalog.Facts[i].Id == fact.Id && !MoonInventory.HasClaimed(i))
+                    m_PendingArtifact = i;
+        bool canClaim = m_PendingArtifact >= 0;
+        if (m_ClaimArtifactButton != null)
+        {
+            m_ClaimArtifactButton.style.display = canClaim ? DisplayStyle.Flex : DisplayStyle.None;
+            m_ClaimArtifactButton.BringToFront();
+        }
+        if (m_DialogueText != null) m_DialogueText.style.bottom = canClaim ? 82 : 10;
+        if (canClaim) m_TimerDisplay = -1f;
+        m_NonPlayerDialogue.BringToFront();
         m_NonPlayerDialogue.style.display = DisplayStyle.Flex;
     }
 
@@ -834,6 +1236,8 @@ public class UIHandler : MonoBehaviour
     {
         m_GameEnded = true;
         SetTalkTarget(null);
+        m_WinScreen.style.display = DisplayStyle.Flex;
+        m_WinScreen.BringToFront();
         m_WinScreen.style.opacity = 1.0f;
     }
 
@@ -841,6 +1245,8 @@ public class UIHandler : MonoBehaviour
     {
         m_GameEnded = true;
         SetTalkTarget(null);
+        m_LoseScreen.style.display = DisplayStyle.Flex;
+        m_LoseScreen.BringToFront();
         m_LoseScreen.style.opacity = 1.0f;
     }
 }

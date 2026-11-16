@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     // --- ДОДАНО ЗМІННУ ДЛЯ ГРАФІКИ ---
     private SpriteRenderer spriteRenderer;
+    public bool IsMoving => move.sqrMagnitude > 0.001f;
 
     void Start()
     {   
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
         
         currentHealth = maxHealth;
         audioSource = GetComponent<AudioSource>();
+        PlayerSkinSystem.ApplyToPlayer(this);
     }
 
     void Update()
@@ -161,6 +163,13 @@ public class PlayerController : MonoBehaviour
     // Цей метод викликається натисканням кнопки (тільки запускає анімацію)
     void Launch()
     {
+        if (PlayerSkinSystem.SelectedSkin == PlayerSkinSystem.PremiumSkin)
+        {
+            PlayerSkinAnimator skinAnimator = GetComponent<PlayerSkinAnimator>();
+            if (skinAnimator != null)
+                skinAnimator.PlayShootAnimation();
+        }
+
         animator.SetTrigger("Launch");
     }
 
@@ -168,8 +177,16 @@ public class PlayerController : MonoBehaviour
     public void SpawnBulletOnFrame()
     {
         GameObject projectileObject = Instantiate(projectilePrefab,
-            rigidbody2d.position + Vector2.up * 0.2f, 
+            rigidbody2d.position + Vector2.up * -0.25f,
             Quaternion.identity);
+
+        if (PlayerSkinSystem.SelectedSkin == PlayerSkinSystem.PremiumSkin)
+        {
+            // Keep the normal laser animation, but tint the premium suit's projectile red.
+            SpriteRenderer[] renderers = projectileObject.GetComponentsInChildren<SpriteRenderer>(true);
+            foreach (SpriteRenderer renderer in renderers)
+                renderer.color = new Color(1f, .18f, .16f, renderer.color.a);
+        }
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(moveDirection, 300); // 300 або ваша швидкість
